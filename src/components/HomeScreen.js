@@ -53,7 +53,7 @@ export default class HomeScreen extends React.Component {
             onPress={() => {
               /* 1. Navigate to the NavigationBar route with params */
               this.props.navigation.navigate('NavigationBar', {
-                itemId: 86,
+                itemId: 87,
                 otherParam: 'First NavigationBar',
               });
             }}

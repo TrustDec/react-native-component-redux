@@ -4,23 +4,34 @@ import { StackNavigator,TabNavigator,TabBarBottom } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './components/HomeScreen'
-import DetailsScreen from './components/DetailsScreen'
+import DetailsScreenPage from './components/DetailsScreen'
 import ModalScreen from './components/ModalScreen'
 
 import SettingScreen from "./page/setting";
 import MainScreen from "./page/main";
+import DetailsScreen from './page/details';
+
+const HomeStack = StackNavigator({
+	MainScreen: { screen: MainScreen, },
+	DetailsScreen: { screen: DetailsScreen },
+});
+  
+const SettingsStack = StackNavigator({
+	SettingsScreen: { screen: SettingScreen },
+	DetailsScreen: { screen: DetailsScreen },
+});
 
 const NavigationBar = TabNavigator({
-  MainScreen: { screen: MainScreen },
-  SettingScreen: { screen: SettingScreen },
+  HomeStack: { screen: HomeStack, navigationOptions: { header: null }},
+  SettingsStack: { screen: SettingsStack,navigationOptions: { header: null } },
 },{
   navigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
-      if (routeName === 'MainScreen') {
+      if (routeName === 'HomeStack') {
         iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-      } else if (routeName === 'SettingScreen') {
+      } else if (routeName === 'SettingsStack') {
         iconName = `ios-options${focused ? '' : '-outline'}`;
       }
       return <Ionicons name={iconName} size={25} color={tintColor} />;
@@ -42,7 +53,7 @@ const MainStack = StackNavigator(
       screen: HomeScreen,
     },
     Details: {
-      screen: DetailsScreen,
+      screen: DetailsScreenPage,
     },
     NavigationBar:{
       screen: NavigationBar,

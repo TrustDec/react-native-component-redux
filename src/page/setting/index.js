@@ -7,8 +7,12 @@ export default class SettingsScreen extends React.Component {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>SettingScreen!</Text>
         <Button
-          title="Go to MainScreen"
-          onPress={() => this.props.navigation.navigate('MainScreen')}
+          title="Go to HomeStack"
+          onPress={() => this.props.navigation.navigate('HomeStack')}
+        />
+        <Button
+          title="Go to DetailsScreen"
+          onPress={() => this.props.navigation.navigate('DetailsScreen')}
         />
       </View>
     );
