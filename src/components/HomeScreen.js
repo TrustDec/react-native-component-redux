@@ -48,6 +48,16 @@ export default class HomeScreen extends React.Component {
               });
             }}
           />
+          <Button
+            title="Go to NavigationBar"
+            onPress={() => {
+              /* 1. Navigate to the NavigationBar route with params */
+              this.props.navigation.navigate('NavigationBar', {
+                itemId: 86,
+                otherParam: 'First NavigationBar',
+              });
+            }}
+          />
         </View>
       );
     }

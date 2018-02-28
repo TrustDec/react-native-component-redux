@@ -3,7 +3,6 @@ import { Button, View, Text } from 'react-native';
 export default class DetailsScreen extends React.Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
       const { params } = navigation.state;
-  
       return {
         title: params ? params.otherParam : 'A Nested Details Screen',
         /* These values are used instead of the shared configuration! */
