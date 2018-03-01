@@ -1,13 +1,8 @@
-
-import React from 'react';
-import { Provider } from 'react-redux';
-import AppWithNavigationState from "./AppRouteConfigs";
-//import store from "./redux/store";
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createReduxBoundAddListener, createReactNavigationReduxMiddleware, } from 'react-navigation-redux-helpers';
-import {RootStack} from './AppRouteConfigs'
-console.log()
+import RootStack from '../../AppRouteConfigs'
+
 const AppNavigator = RootStack;
 
 const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Main'));
@@ -25,16 +20,7 @@ const middleware = createReactNavigationReduxMiddleware(
     state => state.nav,
 );
 export const addListener = createReduxBoundAddListener("root");
-const store = createStore(
+export default createStore(
     appReducer,
     applyMiddleware(middleware),
 );
-export default class Root extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <AppWithNavigationState />
-      </Provider>
-    );
-  }
-}

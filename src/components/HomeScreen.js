@@ -5,7 +5,7 @@ import LogoTitle from "./LogoTitle";
 export default class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
       const params = navigation.state.params || {};
-  
+      const increaseCount = params.increaseCount || (() => false);
       return {
         headerTitle: <LogoTitle />,
         headerLeft: (
@@ -16,7 +16,7 @@ export default class HomeScreen extends React.Component {
           />
         ),
         headerRight: (
-          <Button onPress={params.increaseCount} title="+1" color="#fff" />
+          <Button onPress={increaseCount} title="+1" color="#fff" />
         ),
       };
     };
