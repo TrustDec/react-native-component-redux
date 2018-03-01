@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { AppRegistry } from 'react-native';
-import { StackNavigator,TabNavigator,TabBarBottom } from 'react-navigation';
+import { StackNavigator,TabNavigator,TabBarBottom,addNavigationHelpers } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './components/HomeScreen'
@@ -87,8 +87,68 @@ const RootStack = StackNavigator(
     headerMode: 'none',
   }
 );
+import {
+  createStore,
+  applyMiddleware,
+  combineReducers,
+} from 'redux';
+import {
+  createReduxBoundAddListener,
+  createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
+import { Provider, connect } from 'react-redux';
 
-class App extends Component {
-  render = () => <RootStack />
+const AppNavigator = RootStack;
+
+const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Main'));
+
+const navReducer = (state = initialState, action) => {
+  const nextState = AppNavigator.router.getStateForAction(action, state);
+
+  // Simply return the original `state` if `nextState` is null or undefined.
+  return nextState || state;
+};
+
+const appReducer = combineReducers({
+  nav: navReducer
+});
+
+// Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
+const middleware = createReactNavigationReduxMiddleware(
+  "root",
+  state => state.nav,
+);
+const addListener = createReduxBoundAddListener("root");
+
+class App extends React.Component {
+  render() {
+    return (
+      <AppNavigator navigation={addNavigationHelpers({
+        dispatch: this.props.dispatch,
+        state: this.props.nav,
+        addListener,
+      })} />
+    );
+  }
 }
-AppRegistry.registerComponent('AwesomeProject', () => App);
+
+const mapStateToProps = (state) => ({
+  nav: state.nav
+});
+
+const AppWithNavigationState = connect(mapStateToProps)(App);
+
+const store = createStore(
+  appReducer,
+  applyMiddleware(middleware),
+);
+class Root extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <AppWithNavigationState />
+      </Provider>
+    );
+  }
+}
+AppRegistry.registerComponent('AwesomeProject', () => Root);
