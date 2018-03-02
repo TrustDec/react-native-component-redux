@@ -38,3 +38,4 @@ export default class Root extends React.Component {
     );
   }
 }
+AppRegistry.registerComponent('AwesomeProject', () => Root);
