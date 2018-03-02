@@ -6,11 +6,10 @@ export default class HomeScreen extends Component {
         const { params } = navigation.state;
         return {
             title: params ? params.otherParam : 'MainScreen',
-            /* These values are used instead of the shared configuration! */
-            // headerStyle: {
-            //     backgroundColor: navigationOptions.headerTintColor,
-            // },
-            // headerTintColor: navigationOptions.headerStyle.backgroundColor,
+            headerStyle: {
+                backgroundColor: navigationOptions.headerTintColor,
+            },
+            headerTintColor: navigationOptions.headerStyle.backgroundColor,
         };
     };
   render() {

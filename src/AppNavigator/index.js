@@ -13,11 +13,33 @@ import DetailsScreen from '../page/details';
 const HomeStack = StackNavigator({
 	MainScreen: { screen: MainScreen, },
 	DetailsScreen: { screen: DetailsScreen },
+},{
+  initialRouteName: 'MainScreen',
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: '#0071CF',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  },
 });
   
 const SettingsStack = StackNavigator({
 	SettingsScreen: { screen: SettingScreen },
 	DetailsScreen: { screen: DetailsScreen },
+},{
+  initialRouteName: 'SettingsScreen',
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: '#C824C2',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  },
 });
 
 const NavigationBar = TabNavigator({
@@ -37,7 +59,7 @@ const NavigationBar = TabNavigator({
     },
   }),
   tabBarOptions: {
-    activeTintColor: 'tomato',
+    activeTintColor: '#0071CF',
     inactiveTintColor: 'gray',
   },
   tabBarComponent: TabBarBottom,
