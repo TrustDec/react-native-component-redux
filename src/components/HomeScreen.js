@@ -71,13 +71,13 @@ class HomeScreen extends Component {
       );
     }
   }
-  //将state.counter绑定到props的counter
-const mapStateToProps = (state) => {
-  return {
-      counter: state.counter
-  }
-};
-//将action的所有方法绑定到props上
+
+    const mapStateToProps = (state) => {
+      return {
+          counter: state.counter
+      }
+    };
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
       increment: (...args) => dispatch(actions.increment(...args)),
@@ -85,6 +85,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-  //export default connect(({ nav }) => ({ nav }))(HomeScreen);
-  //通过react-redux提供的connect方法将我们需要的state中的数据和actions中的方法绑定到props上
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
