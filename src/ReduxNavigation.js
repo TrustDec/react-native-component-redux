@@ -8,18 +8,19 @@ import AppNavigator from './AppNavigator';
 class ReduxNavigation extends Component {
     componentDidMount() {
         BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
-      }
+    }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
     }
     onBackPress = () => {
         const { dispatch, nav } = this.props;
+        console.log("============="+nav.index)
         if (nav.index === 0) {
           return false;
         }
         dispatch(NavigationActions.back());
         return true;
-    };
+    }
     render() {
         const { dispatch, nav } = this.props;
         const navigation = addNavigationHelpers({

@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import { Button, View, Text } from 'react-native';
-export default class DetailsScreen extends React.Component {
+export default class DetailsScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
       const { params } = navigation.state;
       return {

@@ -2,7 +2,6 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator,TabNavigator,TabBarBottom,addNavigationHelpers } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-//import { addListener } from './redux/store'
 import { addListener } from './index'
 import HomeScreen from './components/HomeScreen'
 import DetailsScreenPage from './components/DetailsScreen'

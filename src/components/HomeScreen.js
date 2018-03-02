@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import { Button, Image, View, Text } from 'react-native';
 import LogoTitle from "./LogoTitle";
 
-export default class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
     static navigationOptions = ({ navigation }) => {
       const params = navigation.state.params || {};
       const increaseCount = params.increaseCount || (() => false);

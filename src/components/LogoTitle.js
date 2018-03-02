@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import { Image } from 'react-native';
 
-export default class LogoTitle extends React.Component {
+export default class LogoTitle extends Component {
     render() {
       return (
         <Image
