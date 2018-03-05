@@ -48,10 +48,39 @@ function auth(state = initialAuthState, action) {
       return state;
   }
 }
-
+const initialState = {  
+    text: 'Hello'  
+} 
+const counter = (state = initialState, action) => { 
+    switch (action.type) {  
+        case 'CHANGE_TEXT':  
+        console.log(action)
+            return {  
+                text: state.text=='Hello' ? 'world':'Hello',
+            }  
+        case 'BUTTON_CLICK':  
+            return {  
+                text: 'Hello world'  
+            }  
+        default:  
+            return initialState;  
+    }  
+}
+const num = (state = 0, action) => {
+    switch (action.type) {
+        case 'INCREMENT_COUNTER':
+            return state + 1;
+        case 'DECREMENT_COUNTER':
+            return state - 1;
+        default:
+            return state
+    }
+};
 const AppReducer = combineReducers({
   nav,
   auth,
+  counter,
+  num
 });
 
 export default AppReducer;

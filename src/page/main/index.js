@@ -1,21 +1,28 @@
 import React,{ Component } from 'react';
 import { Text, View, Button } from 'react-native';
-
-export default class HomeScreen extends Component {
+import { connect } from 'react-redux';
+import *as actions from '../../redux/actions/counter';
+class HomeScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         const { params } = navigation.state;
         return {
             title: params ? params.otherParam : 'MainScreen',
             headerStyle: {
-                backgroundColor: navigationOptions.headerTintColor,
+                backgroundColor: 'yellow',
             },
-            headerTintColor: navigationOptions.headerStyle.backgroundColor,
+            headerTintColor: 'red',
         };
     };
   render() {
     console.log(this.props.navigation)
+    const {increment, decrement, counter,login} = this.props;
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>counter:{counter}</Text>
+          <Button
+            title="+"
+            onPress={increment}
+          />
         <Text>MainScreen!</Text>
         <Button
           title="Go to SettingsStack"
@@ -37,3 +44,17 @@ export default class HomeScreen extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+      counter: state.counter
+  }
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+      increment: (...args) => dispatch(actions.increment(...args)),
+	    decrement: (...args) => dispatch(actions.decrement(...args)),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

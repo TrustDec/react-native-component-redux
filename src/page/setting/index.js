@@ -7,9 +7,9 @@ export default class SettingsScreen extends Component {
     return {
         title: params ? params.otherParam : 'SettingsScreen',
         headerStyle: {
-            backgroundColor: navigationOptions.headerTintColor,
+            backgroundColor: 'yellow',
         },
-        headerTintColor: navigationOptions.headerStyle.backgroundColor,
+        headerTintColor: 'red',
     };
 };
   render() {
@@ -18,7 +18,7 @@ export default class SettingsScreen extends Component {
         <Text>SettingScreen!</Text>
         <Button
           title="Go to HomeStack"
-          onPress={() => this.props.navigation.navigate('HomeStack')}
+          onPress={() => this.props.navigation.navigate('Main')}
         />
         <Button
           title="Go to DetailsScreen"

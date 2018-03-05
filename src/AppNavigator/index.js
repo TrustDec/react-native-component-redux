@@ -1,110 +1,47 @@
 import React,{ Component } from 'react';
-import { StackNavigator,TabNavigator,TabBarBottom } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import HomeScreen from '../components/HomeScreen'
-import DetailsScreenPage from '../components/DetailsScreen'
-import ModalScreen from '../components/ModalScreen'
-
+import { BackHandler } from "react-native";
+import { connect } from 'react-redux';
+import { StackNavigator,TabNavigator,TabBarBottom,addNavigationHelpers, NavigationActions } from "react-navigation";
+import { addListener } from "../redux";
+import AppNavigator1 from './AppNavigator';
 import SettingScreen from "../page/setting";
 import MainScreen from "../page/main";
-import DetailsScreen from '../page/details';
-
-const HomeStack = StackNavigator({
-	MainScreen: { screen: MainScreen, },
-	DetailsScreen: { screen: DetailsScreen },
-},{
-  initialRouteName: 'MainScreen',
-  navigationOptions: {
-    headerStyle: {
-      backgroundColor: '#0071CF',
+export const AppNavigator = StackNavigator({
+      Main: {
+        screen: MainScreen,
+      },
+      SettingsStack: {
+        screen: SettingScreen,
+      },
     },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  },
-});
-  
-const SettingsStack = StackNavigator({
-	SettingsScreen: { screen: SettingScreen },
-	DetailsScreen: { screen: DetailsScreen },
-},{
-  initialRouteName: 'SettingsScreen',
-  navigationOptions: {
-    headerStyle: {
-      backgroundColor: '#C824C2',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  },
-});
-
-const NavigationBar = TabNavigator({
-  HomeStack: { screen: HomeStack, navigationOptions: { header: null }},
-  SettingsStack: { screen: SettingsStack,navigationOptions: { header: null } },
-},{
-  navigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ focused, tintColor }) => {
-      const { routeName } = navigation.state;
-      let iconName;
-      if (routeName === 'HomeStack') {
-        iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-      } else if (routeName === 'SettingsStack') {
-        iconName = `ios-options${focused ? '' : '-outline'}`;
-      }
-      return <Ionicons name={iconName} size={25} color={tintColor} />;
-    },
-  }),
-  tabBarOptions: {
-    activeTintColor: '#0071CF',
-    inactiveTintColor: 'gray',
-  },
-  tabBarComponent: TabBarBottom,
-  tabBarPosition: 'bottom',
-  animationEnabled: false,
-  swipeEnabled: false,
-});
-
-const MainStack = StackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Details: {
-      screen: DetailsScreenPage,
-    },
-    NavigationBar:{
-      screen: NavigationBar,
+    {
+      mode: 'modal',
+      headerMode: 'none',
     }
-  },
-  {
-    initialRouteName: 'Home',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#f4511e',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
-  }
-);
-
-export default  StackNavigator(
-  {
-    Main: {
-      screen: MainStack,
-    },
-    MyModal: {
-      screen: ModalScreen,
-    },
-  },
-  {
-    mode: 'modal',
-    headerMode: 'none',
-  }
-);
+  );
+class ReduxNavigation extends Component {
+    componentDidMount() {
+        BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+    }
+    componentWillUnmount() {
+        BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+    }
+    onBackPress = () => {
+        const { dispatch, nav } = this.props;
+        if (nav.index === 0) {
+          return false;
+        }
+        dispatch(NavigationActions.back());
+        return true;
+    }
+    render() {
+        const { dispatch, nav } = this.props;
+        const navigation = addNavigationHelpers({
+            dispatch,
+            state: nav,
+            addListener,
+        });
+        return <AppNavigator navigation={navigation} />;
+    }
+}
+export default connect(({ nav }) => ({ nav }))(ReduxNavigation);

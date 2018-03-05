@@ -2,3 +2,5 @@
 # yarn lockfile v1
 
 rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
+
+https://github.com/canyavall/reactcv/blob/f718721a606aca9376165d0712b31f7d066dce73/React%20Lesson%203/intro_redux_middleware.md 素材
