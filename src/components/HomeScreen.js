@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Image, View, Text } from 'react-native';
 import LogoTitle from "./LogoTitle";
 import actions from '../redux/actions/counter';
+import *as loginAction from '../redux/actions/loginAction';// 导入action方法
 
 class HomeScreen extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -22,7 +23,9 @@ class HomeScreen extends Component {
         ),
       };
     };
-  
+   state= {
+	   title:"login"
+   }
     componentWillMount() {
       this.props.navigation.setParams({ increaseCount: this._increaseCount });
     }
@@ -34,16 +37,23 @@ class HomeScreen extends Component {
     _increaseCount = () => {
       this.setState({ count: this.state.count + 1 });
     };
-  
+	shouldComponentUpdate(nextProps, nextState) {
+		// 登录完成,切成功登录
+		if (nextProps.status === '登陆成功' && nextProps.isSuccess) {
+		  this.setState({title:'登陆成功'});
+		  return false;
+		}
+		return true;
+	  }
     render() {
-      const {increment, decrement, counter} = this.props;
+      const {increment, decrement, counter,login} = this.props;
       console.log(this.props)
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>counter:{counter}</Text>
           <Button
-            title="+"
-            onPress={increment}
+            title="login"
+            onPress={login}
           />
           <Text>Home Screen</Text>
           <Text>Count: {this.state.count}</Text>
@@ -72,16 +82,20 @@ class HomeScreen extends Component {
     }
   }
 
-    const mapStateToProps = (state) => {
-      return {
-          counter: state.counter
-      }
-    };
+const mapStateToProps = (state) => {
+  return {
+      counter: state.counter,
+      status: state.loginIn.status,
+      isSuccess: state.loginIn.isSuccess,
+      user: state.loginIn.user,
+  }
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
       increment: (...args) => dispatch(actions.increment(...args)),
-      decrement: (...args) => dispatch(actions.decrement(...args))
+	  decrement: (...args) => dispatch(actions.decrement(...args)),
+	  login: () => dispatch(loginAction.login()),
   }
 };
 

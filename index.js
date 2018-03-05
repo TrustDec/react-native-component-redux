@@ -1,1 +1,2 @@
-import './src';
+import './App'
+//import './src'

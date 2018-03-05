@@ -4,6 +4,5 @@ const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.g
   
 export default navReducer = (state = initialState, action) => {
     const nextState = AppNavigator.router.getStateForAction(action, state);
-    console.log(nextState)
     return nextState || state;
 };
