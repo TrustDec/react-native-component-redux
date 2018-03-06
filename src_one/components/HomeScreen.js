@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Image, View, Text } from 'react-native';
 import LogoTitle from "./LogoTitle";
-import actions from '../redux/actions/counter';
+import *as actions from '../redux/actions/counter';
 import *as loginAction from '../redux/actions/loginAction';// 导入action方法
 
 class HomeScreen extends Component {
@@ -93,8 +93,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-      increment: (...args) => dispatch(actions.increment(...args)),
-	  decrement: (...args) => dispatch(actions.decrement(...args)),
+    increment: () => dispatch(actions.increment),
+	  decrement: () => dispatch(actions.decrement),
 	  login: () => dispatch(loginAction.login()),
   }
 };

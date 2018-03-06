@@ -1,23 +1,12 @@
 import React,{ Component } from 'react';
-import { AppRegistry } from 'react-native';
-import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import ReduxNavigation from "./AppNavigator";
-import AppReducer from './redux/reducers';
-import { middleware } from './redux';
+import { AppRegistry } from 'react-native';
+import AppWithNavigationState from "./navigators";
+import store,{ middleware } from './redux/util';
 
-const store = createStore(
-  AppReducer,
-  applyMiddleware(thunk,middleware),
+const Root = () => (
+    <Provider store={store}>
+        <AppWithNavigationState />
+    </Provider>
 );
-class Root extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <ReduxNavigation />
-      </Provider>
-    );
-  }
-}
 AppRegistry.registerComponent('AwesomeProject', () => Root);

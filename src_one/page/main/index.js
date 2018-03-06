@@ -52,8 +52,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-      increment: (...args) => dispatch(actions.increment(...args)),
-	    decrement: (...args) => dispatch(actions.decrement(...args)),
+      increment: () => dispatch(actions.increment),
+	    decrement: () => dispatch(actions.decrement),
   }
 };
 
