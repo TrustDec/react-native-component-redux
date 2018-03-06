@@ -10,9 +10,9 @@
 
 ### 介绍 Redux 中间件（Middleware）
 还记得Redux的GIF嘛
-<img src="./assets/redux.png"/>
+<img src="./assets/redux.gif"/>
 我们需要稍微改变一下
-<img src="./assets/change-redux.png"/>
+<img src="./assets/change-redux.gif"/>
 正如你所看到的，这里还有一个概念：Middleware
 #### 什么是Middleware
 从[文档][Middleware]中看到：
