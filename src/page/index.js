@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Image, View, Text,StyleSheet } from 'react-native';
-import *as action from "../redux/actions";
+import *as action from "../redux/actions/counter";
 
 class LoginScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     },
 });
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         counter: state.counter,
     }

@@ -21,6 +21,10 @@ export default class HomeScreen extends Component {
                     onPress={()=>this.props.navigation.navigate('ModalGlobal')}
                     title={"Info"}
                 />
+                <Button
+                    onPress={()=>this.props.navigation.navigate('TodoScreen')}
+                    title={"TodoScreen"}
+                />
             </View>
             
         );

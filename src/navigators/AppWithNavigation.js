@@ -5,6 +5,7 @@ import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/Car
 import LoginScreen from '../page'
 import ModalScreen from '../components/ModalScreen'
 import HomeScreen from '../page/home'
+import TodoListScreen from '../page/home/containers/TodoList'
 
 const MainStack = StackNavigator(
 	{
@@ -13,6 +14,9 @@ const MainStack = StackNavigator(
 		},
 		HomeScreen: {
 			screen: HomeScreen,
+		},
+		TodoScreen: {
+			screen: TodoListScreen,
 		}
 	},
 	{
