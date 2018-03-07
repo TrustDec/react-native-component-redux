@@ -1,10 +1,10 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { BackHandler } from "react-native";
-import ReactNative from "react-navigation";
+import ReactNavigation from "react-navigation";
 import AppNavigator from './AppWithNavigation';
 import { addListener } from "../redux/util";
-const {StackNavigator,TabNavigator,TabBarBottom,addNavigationHelpers, NavigationActions} = ReactNative;
+const {StackNavigator,TabNavigator,TabBarBottom,addNavigationHelpers, NavigationActions} = ReactNavigation;
 
 class ReduxNavigation extends Component {
     componentDidMount() {
