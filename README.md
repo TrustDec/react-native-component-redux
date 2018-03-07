@@ -29,8 +29,8 @@
 
 #### 案例效果图
 <figure class="half">
-    <img src="./assets/home.png" width="450px"/>
-    <img src="./assets/todo.png" width="450px"/>
+    <img src="./assets/home.png" width="300px"/>
+    <img src="./assets/todo.png" width="300px"/>
 </figure>
 
 [Middleware]: http://redux.js.org/docs/advanced/Middleware.html
