@@ -1,4 +1,5 @@
 快捷地址：
+> [immutable doc][immutable]
 
 > [react-navigation doc][react-navigation]
 
@@ -10,9 +11,11 @@
 
 ### 介绍 Redux 中间件（Middleware）
 还记得Redux的GIF嘛
+
 <img src="./assets/redux.gif" width="550px"/>
 
 我们需要稍微改变一下
+
 <img src="./assets/change-redux.gif" width="550px"/>
 
 正如你所看到的，这里还有一个概念：Middleware
@@ -34,6 +37,7 @@
 </center>
 
 [Middleware]: http://redux.js.org/docs/advanced/Middleware.html
+[immutable]: https://facebook.github.io/immutable-js/docs/#/
 [react-navigation]: https://reactnavigation.org/docs/getting-started.html
 [React-Native-Express]: http://www.reactnativeexpress.com/
 [react-navigation-redux-helpers]:https://github.com/react-navigation/react-navigation-redux-helpers

@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "immutable": "^3.8.2",
     "react": "16.2.0",
     "react-native": "0.53.3",
     "react-native-vector-icons": "^4.5.0",
