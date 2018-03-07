@@ -1,11 +1,12 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Image, View, Text,StyleSheet } from 'react-native';
+import { Image, View, Text,StyleSheet,StatusBar } from 'react-native';
 import *as action from "../redux/actions/counter";
-
+import Button from '../modules/Button'
 class LoginScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         const { params } = navigation.state;
+        StatusBar.setBackgroundColor(navigationOptions.headerStyle.backgroundColor,false)
         return {
             title: params ? params.otherParam : 'LoginScreen',
         }
@@ -14,22 +15,26 @@ class LoginScreen extends Component {
         const { counter,increment,decrement, navigation } = this.props;
         return(
             <View style={styles.container}>
-                <Text>当前数值：{counter}</Text>
+                <Text style={styles.counterText}>当前数值：{counter}</Text>
                 <Button
-                    onPress={increment}
+                    onClick={increment}
                     title={"增"}
+                    bgColor='#9DABC0'
                 />
                 <Button
-                    onPress={decrement}
+                    onClick={decrement}
                     title={"减"}
+                    bgColor='#5D9BFB'
                 />
                 <Button
-                    onPress={()=>navigation.navigate('ModalGlobal')}
+                    onClick={()=>navigation.navigate('ModalGlobal')}
                     title={"Info"}
+                    bgColor='#E3C883'
                 />
                 <Button
-                    onPress={()=>navigation.navigate('HomeScreen')}
+                    onClick={()=>navigation.navigate('HomeScreen')}
                     title={"Go to Home"}
+                    bgColor='#3FBF66'
                 />
             </View>
             
@@ -42,7 +47,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#F5FCFF',
+      paddingHorizontal:10
     },
+    counterText:{
+        fontSize:22,
+        fontWeight:'bold'
+    }
 });
 const mapStateToProps = (state) => {
     return {

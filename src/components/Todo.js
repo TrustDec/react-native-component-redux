@@ -5,7 +5,8 @@ const Todo = ({ onClick, completed, text }) => (
   <Text
     onPress={onClick}
     style={{
-        textDecorationLine: completed ? 'line-through' : 'none'
+        textDecorationLine: completed ? 'line-through' : 'none',
+        fontSize:22
     }}
   >
     {text}
