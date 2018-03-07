@@ -28,10 +28,10 @@
 在这个功能中，你可以让Action继续前进，你可以阻止它继续前进，或者你可以改变它，并把它发送给下一个。
 
 #### 案例效果图
-<figure class="half">
+<center class="half">
     <img src="./assets/home.png" width="300px"/>
     <img src="./assets/todo.png" width="300px"/>
-</figure>
+</center>
 
 [Middleware]: http://redux.js.org/docs/advanced/Middleware.html
 [react-navigation]: https://reactnavigation.org/docs/getting-started.html
