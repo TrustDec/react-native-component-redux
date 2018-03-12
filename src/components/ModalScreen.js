@@ -1,7 +1,8 @@
 import React,{ Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, StatusBar } from 'react-native';
 import Button from '../modules/Button'
-export default class ModalScreen extends Component {
+class ModalScreen extends Component {
     render() {
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -20,3 +21,4 @@ export default class ModalScreen extends Component {
       );
     }
   }
+export default connect()(ModalScreen)
