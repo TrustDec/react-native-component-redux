@@ -1,11 +1,15 @@
 快捷地址：
 > [immutable doc][immutable]
 
+> [immutable blog][immutable-blog]
+
 > [react-navigation doc][react-navigation]
 
 > [React Native Express ][React-Native-Express]
 
 > [react-navigation-redux-helpers doc][react-navigation-redux-helpers]
+
+> [react-navigation-redux error][new-nav-redux]
 
 <img src="./assets/tab-navigator.png"/>
 
@@ -35,7 +39,8 @@
     <img src="./assets/home.png" width="300px"/>
     <img src="./assets/todo.png" width="300px"/>
 </center>
-
+[new-nav-redux]:http://blog.csdn.net/qq_33323251/article/details/79430398
+[immutable-blog]: https://github.com/camsong/blog/issues/3
 [Middleware]: http://redux.js.org/docs/advanced/Middleware.html
 [immutable]: https://facebook.github.io/immutable-js/docs/#/
 [react-navigation]: https://reactnavigation.org/docs/getting-started.html

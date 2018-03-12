@@ -7,6 +7,8 @@ import ModalScreen from '../components/ModalScreen'
 import HomeScreen from '../page/home'
 import TodoListScreen from '../page/home/containers/TodoList'
 
+import ImmutableList from "../page/Immutable/List";
+
 const MainStack = StackNavigator(
 	{
 		LoginScreen: {
@@ -17,18 +19,25 @@ const MainStack = StackNavigator(
 		},
 		TodoScreen: {
 			screen: TodoListScreen,
+		},
+		ImmutableList: {
+			screen:ImmutableList
 		}
 	},
 	{
 	  initialRouteName: 'LoginScreen',
 	  navigationOptions: {
-		headerStyle: {
-		  backgroundColor: '#f4511e',
-		},
-		headerTintColor: '#fff',
-		headerTitleStyle: {
-		  fontWeight: 'bold',
-		},
+			headerStyle: {
+				backgroundColor: '#FF3F00',
+			},
+			headerTintColor: '#fff',
+			headerTitleStyle: {
+				fontWeight: 'bold',
+				alignSelf: 'center',
+				textAlign: 'center',
+				flex:1
+			},
+			SmallRui:"Trust"
 	  },
 	}
   );

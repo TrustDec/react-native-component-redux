@@ -6,7 +6,8 @@ import Button from '../modules/Button'
 class LoginScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         const { params } = navigation.state;
-        StatusBar.setBackgroundColor(navigationOptions.headerStyle.backgroundColor,false)
+        StatusBar.setBarStyle('default');
+        StatusBar.setBackgroundColor(navigationOptions.headerStyle.backgroundColor,true)
         return {
             title: params ? params.otherParam : 'LoginScreen',
         }
@@ -35,6 +36,11 @@ class LoginScreen extends Component {
                     onClick={()=>navigation.navigate('HomeScreen')}
                     title={"Go to Home"}
                     bgColor='#3FBF66'
+                />
+                <Button
+                    onClick={()=>navigation.navigate('ImmutableList')}
+                    title={"See immutable example"}
+                    bgColor='#FF3F00'
                 />
             </View>
             

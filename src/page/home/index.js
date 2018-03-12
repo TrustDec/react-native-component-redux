@@ -2,14 +2,17 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Image, View, Text,StyleSheet,StatusBar } from 'react-native';
 import Button from '../../modules/Button'
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         const { params } = navigation.state;
+        StatusBar.setBarStyle('dark-content');
+        StatusBar.setBackgroundColor(navigationOptions.headerTintColor,true);
         return {
             title: params ? params.otherParam : 'HomeScreen',
             headerStyle: {
                 backgroundColor: navigationOptions.headerTintColor,
             },
+            headerRight:<View/>,
             headerTintColor: navigationOptions.headerStyle.backgroundColor,
         }
     }
@@ -19,11 +22,6 @@ export default class HomeScreen extends Component {
     render(){
         return(
             <View style={styles.container}>
-                <StatusBar
-                    backgroundColor={'#fff'}
-                    animated={true}
-                    barStyle='dark-content'
-                />
                 <Button
                     onClick={()=>this.onNavigateRouthPush('ModalGlobal')}
                     title={"Info"}
@@ -49,3 +47,4 @@ const styles = StyleSheet.create({
       paddingHorizontal:10
     },
 });
+export default connect()(HomeScreen)

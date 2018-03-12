@@ -8,21 +8,13 @@ const {StackNavigator,TabNavigator,TabBarBottom,addNavigationHelpers, Navigation
 
 class ReduxNavigation extends Component {
     componentDidMount() {
-        BackHandler.addEventListener("hardwareBackPress", this.onBackPress);
+        BackHandler.addEventListener("hardwareBackPress", this.onBackButtonPressAndroid);
     }
     componentWillUnmount() {
-        BackHandler.removeEventListener("hardwareBackPress", this.onBackPress);
+        BackHandler.removeEventListener("hardwareBackPress", this.onBackButtonPressAndroid);
     }
     
-    onBackPressOne = () => {
-        const { dispatch, nav } = this.props;
-        if (nav.index === 0) {
-          return false;
-        }
-        dispatch(NavigationActions.back());
-        return true;
-    }
-    onBackPress = () => {
+    onBackButtonPressAndroid = () => {
         console.log(this.props.nav.routes)
         const routersTop = this.props.nav.routes;
         const routers = this.props.nav.routes[0].routes;

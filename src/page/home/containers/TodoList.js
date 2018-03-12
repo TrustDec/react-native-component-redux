@@ -6,14 +6,22 @@ import VisibleTodoList from '../../../components/VisibleTodoList'
 import Button from '../../../modules/Button'
 const TodoList = () => (
     <View>
-        <StatusBar
-            backgroundColor={'#FF3F00'}
-            animated={true}
-            barStyle='default'
-        />
         <AddTodo />
         <Footer />
         <VisibleTodoList />
     </View>
 )
+TodoList.navigationOptions = ({ navigation, navigationOptions }) => {
+    const { params } = navigation.state;
+    StatusBar.setBackgroundColor(navigationOptions.headerStyle.backgroundColor,true);
+    StatusBar.setBarStyle('default');
+    return {
+        title: params ? params.otherParam : 'TodoList',
+        headerStyle: {
+            backgroundColor: navigationOptions.headerStyle.backgroundColor,
+        },
+        headerRight:<View/>,
+        headerTintColor: navigationOptions.headerTintColor,
+    }
+}
 export default TodoList
