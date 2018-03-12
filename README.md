@@ -39,6 +39,7 @@
     <img src="./assets/home.png" width="300px"/>
     <img src="./assets/todo.png" width="300px"/>
 </center>
+
 [new-nav-redux]:http://blog.csdn.net/qq_33323251/article/details/79430398
 [immutable-blog]: https://github.com/camsong/blog/issues/3
 [Middleware]: http://redux.js.org/docs/advanced/Middleware.html
