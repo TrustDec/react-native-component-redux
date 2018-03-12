@@ -23,14 +23,28 @@ class HomeScreen extends Component {
         return(
             <View style={styles.container}>
                 <Button
-                    onClick={()=>this.onNavigateRouthPush('ModalGlobal')}
+                    onClick={this.onNavigateRouthPush.bind(this,'CounterScreen')}
+                    title={"Go to Counter"}
+                    bgColor='#9DABC0'
+                />
+                <Button
+                    onClick={this.onNavigateRouthPush.bind(this,'ModalGlobal')}
                     title={"Info"}
                     bgColor='#E3C883'
                 />
                 <Button
-                    onClick={()=>this.onNavigateRouthPush('TodoScreen')}
+                    onClick={this.onNavigateRouthPush.bind(this,'TodoScreen')}
                     title={"Go to TodoScreen"}
                     bgColor='#3FBF66'
+                />
+                <Button
+                    onClick={this.onNavigateRouthPush.bind(this,'SetEventScreen')}
+                    title={"Go to SetViewScreen"}
+                />
+                <Button
+                    onClick={this.onNavigateRouthPush.bind(this,'ImmutableList')}
+                    title={"See immutable example"}
+                    bgColor='#FF3F00'
                 />
             </View>
             

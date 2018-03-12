@@ -1,51 +1,72 @@
 import React,{ Component } from 'react';
+import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-import { Image, View, Text,StyleSheet,StatusBar } from 'react-native';
-import *as action from "../redux/actions/counter";
+import { Alert,Image, View, Text,StyleSheet,StatusBar,ActivityIndicator } from 'react-native';
 import Button from '../modules/Button'
+import * as actionCreators from "../redux/actions/loginActions";
+import Modal from 'react-native-modalbox';
 class LoginScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         const { params } = navigation.state;
-        StatusBar.setBarStyle('default');
-        StatusBar.setBackgroundColor(navigationOptions.headerStyle.backgroundColor,true)
+        StatusBar.setBarStyle('dark-content');
+        StatusBar.setBackgroundColor(navigationOptions.headerTintColor,true)
         return {
             title: params ? params.otherParam : 'LoginScreen',
+            header:null
         }
     }
+    state={
+        phone:"123",
+        password:"456",
+      }
+    onChangeText = text => {
+        console.log(text);
+    }
+    login = () => {
+        if(!this.state.phone||!this.state.password){
+          Alert.alert('温馨提示','用户名或密码不能为空！');
+        }else{
+            this.refs.modal.open();//loading 状态
+           this.props.actions.login({'phone':this.state.phone,'password':this.state.password});//dispath 登陆
+        }
+      }
     render(){
-        const { counter,increment,decrement, navigation } = this.props;
         return(
             <View style={styles.container}>
-                <Text style={styles.counterText}>当前数值：{counter}</Text>
+                <View style={{flexDirection:'row',}}>
+                    <Text style={styles.counterText}>isLoggedIn:</Text>
+                    <Text style={[styles.counterText,styles.counterTextRed]}>{this.props.state.login.isLoggedIn+""}</Text>
+                </View>
+                <View style={{flexDirection:'row',}}>
+                    <Text style={styles.counterText}>status:</Text>
+                    <Text style={[styles.counterText,styles.counterTextRed]}>{this.props.state.login.status+''}</Text>
+                </View>
+                <View style={{flexDirection:'row',}}>
+                    <Text style={styles.counterText}>user:</Text>
+                    <Text style={[styles.counterText,styles.counterTextRed]}>{JSON.stringify(this.props.state.login.user)}</Text>
+                </View>
                 <Button
-                    onClick={increment}
-                    title={"增"}
+                    onClick={this.login}
+                    title={"Go to Magical World"}
                     bgColor='#9DABC0'
                 />
                 <Button
-                    onClick={decrement}
-                    title={"减"}
-                    bgColor='#5D9BFB'
-                />
-                <Button
-                    onClick={()=>navigation.navigate('ModalGlobal')}
-                    title={"Info"}
+                    onClick={()=>this.props.navigation.navigate('HomeScreen')}
+                    title={"进入案例区"}
                     bgColor='#E3C883'
                 />
-                <Button
-                    onClick={()=>navigation.navigate('HomeScreen')}
-                    title={"Go to Home"}
-                    bgColor='#3FBF66'
-                />
-                <Button
-                    onClick={()=>navigation.navigate('SetEventScreen')}
-                    title={"Go to SetViewScreen"}
-                />
-                <Button
-                    onClick={()=>navigation.navigate('ImmutableList')}
-                    title={"See immutable example"}
-                    bgColor='#FF3F00'
-                />
+                <Modal
+                    style={styles.modal}
+                    ref='modal'
+                    isOpen={this.props.status=='doing'?true:false}
+                    animationDuration={0}
+                    position={"center"}
+                    >
+                    <ActivityIndicator
+                    size='large'
+                    />
+                    <Text style={{marginTop:15,fontSize:16,color:'#444444'}}>登陆中...</Text>
+                </Modal>
             </View>
             
         );
@@ -56,23 +77,34 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
+      backgroundColor: '#fff',
       paddingHorizontal:10
     },
     counterText:{
         fontSize:22,
         fontWeight:'bold'
-    }
+    },
+    counterTextRed:{
+        color:'red'
+    },
+    modal: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width:150,
+        height:150,
+        borderRadius:10,
+      },
 });
 const mapStateToProps = (state) => {
-    return {
-        counter: state.counter,
-    }
+    return{
+        isLoggedIn:state.login.isLoggedIn,
+        status:state.login.status,
+        state:state
+      };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        increment: () => dispatch(action.increment),
-        decrement: () => dispatch(action.decrement),
+        actions: bindActionCreators(actionCreators, dispatch)
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(LoginScreen)

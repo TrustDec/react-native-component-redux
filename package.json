@@ -11,12 +11,14 @@
     "immutable": "^3.8.2",
     "react": "16.2.0",
     "react-native": "^0.54.1",
+    "react-native-modalbox": "^1.4.2",
     "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.5.1",
     "react-navigation-redux-helpers": "^1.0.3",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "teaset": "^0.5.5"
   },
   "devDependencies": {
     "babel-jest": "22.4.1",

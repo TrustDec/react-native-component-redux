@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { View,Text } from 'react-native';
+import { View,Text,StatusBar } from 'react-native';
 import { List, Set } from 'immutable';
 // import 'core-js/es6/symbol';
 import 'core-js/fn/symbol/iterator';
@@ -18,6 +18,8 @@ const listFromPlainObject = [
 class ImmutableList extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         const { params } = navigation.state;
+        StatusBar.setBarStyle('default');
+        StatusBar.setBackgroundColor(navigationOptions.headerStyle.backgroundColor,true)
         return {
             title: params ? params.otherParam : 'ImmutableList',
             headerRight:<View/>,
