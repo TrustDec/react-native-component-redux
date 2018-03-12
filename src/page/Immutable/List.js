@@ -16,6 +16,13 @@ const listFromPlainObject = [
     //listFromPlainSet.equals(listFromCollectionArray),
     listFromPlainSet.equals(listFromPlainArray)];
 class ImmutableList extends Component {
+    static navigationOptions = ({ navigation, navigationOptions }) => {
+        const { params } = navigation.state;
+        return {
+            title: params ? params.otherParam : 'ImmutableList',
+            headerRight:<View/>,
+        }
+    }
     render(){
         return(
             <View>

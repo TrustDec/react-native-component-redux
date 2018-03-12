@@ -6,7 +6,7 @@ import LoginScreen from '../page'
 import ModalScreen from '../components/ModalScreen'
 import HomeScreen from '../page/home'
 import TodoListScreen from '../page/home/containers/TodoList'
-
+import SetEvent from '../page/setview'
 import ImmutableList from "../page/Immutable/List";
 
 const MainStack = StackNavigator(
@@ -19,6 +19,9 @@ const MainStack = StackNavigator(
 		},
 		TodoScreen: {
 			screen: TodoListScreen,
+		},
+		SetEventScreen: {
+			screen: SetEvent,
 		},
 		ImmutableList: {
 			screen:ImmutableList

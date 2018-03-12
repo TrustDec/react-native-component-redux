@@ -38,6 +38,10 @@ class LoginScreen extends Component {
                     bgColor='#3FBF66'
                 />
                 <Button
+                    onClick={()=>navigation.navigate('SetEventScreen')}
+                    title={"Go to SetViewScreen"}
+                />
+                <Button
                     onClick={()=>navigation.navigate('ImmutableList')}
                     title={"See immutable example"}
                     bgColor='#FF3F00'
