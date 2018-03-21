@@ -8,12 +8,15 @@
 - [ ] native 层
 
 #### 案例效果图
-<center class="half">
-    <img src="./assets/new_login.jpg" width="300px"/>
-    <img src="./assets/new_list.jpg" width="300px"/>
-    <img src="./assets/new_image.jpg" width="300px"/>
-    <img src="./assets/new_info.jpg" width="300px"/>
+<center class="third">
+    <img src="./assets/new_login.jpg" />
+    <img src="./assets/new_list.jpg" />
+    <img src="./assets/new_image.jpg" />
 </center>
+
+<figure>
+   <img src="./assets/new_info.jpg"/>
+</figure> 
 
 ### 快捷地址：
 > [immutable doc][immutable]
