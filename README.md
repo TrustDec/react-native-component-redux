@@ -1,4 +1,21 @@
-快捷地址：
+### 功能集合
+- [x] 热更新 code-push
+- [x] carousel 
+- [x] redux 案例
+- [x] react-navigation 案例
+- [x] Android 硬更新
+- [x] iOS 硬更新
+- [ ] native 层
+
+#### 案例效果图
+<center class="half">
+    <img src="./assets/new_login.jpg" width="300px"/>
+    <img src="./assets/new_list.jpg" width="300px"/>
+    <img src="./assets/new_image.jpg" width="300px"/>
+    <img src="./assets/new_info.jpg" width="300px"/>
+</center>
+
+### 快捷地址：
 > [immutable doc][immutable]
 
 > [immutable blog][immutable-blog]
@@ -33,13 +50,6 @@
 简而言之，这是一个函数，在Action到达Reducer之前，将使用Action调用该函数。
 
 在这个功能中，你可以让Action继续前进，你可以阻止它继续前进，或者你可以改变它，并把它发送给下一个。
-
-#### 案例效果图
-<center class="half">
-    <img src="./assets/home.png" width="300px"/>
-    <img src="./assets/todo.png" width="300px"/>
-</center>
-
 [new-nav-redux]:http://blog.csdn.net/qq_33323251/article/details/79430398
 [immutable-blog]: https://github.com/camsong/blog/issues/3
 [Middleware]: http://redux.js.org/docs/advanced/Middleware.html
