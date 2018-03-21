@@ -27,9 +27,11 @@ const styles = StyleSheet.create({
         alignItems:'center',
         width:'100%',
         height:45,
+        borderRadius:5,
+        marginVertical:5
     },
     buttonTitle:{
         color:'#fff',
-        fontSize:20
+        fontSize:16
     }
 });

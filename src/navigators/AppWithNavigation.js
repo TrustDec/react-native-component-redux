@@ -9,6 +9,7 @@ import TodoListScreen from '../page/home/containers/TodoList'
 import CounterScreen from '../page/home/containers/Counter'
 import SetEvent from '../page/setview'
 import ImmutableList from "../page/Immutable/List";
+import Carousel from '../page/home/containers/Carousel'
 
 const MainStack = StackNavigator(
 	{
@@ -29,6 +30,9 @@ const MainStack = StackNavigator(
 		},
 		ImmutableList: {
 			screen:ImmutableList
+		},
+		CarouselScreen: {
+			screen:Carousel
 		}
 	},
 	{

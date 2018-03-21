@@ -1,24 +1,36 @@
 import React,{ Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-import { Alert,Image, View, Text,StyleSheet,StatusBar,ActivityIndicator } from 'react-native';
+import { Alert,AlertIOS,Image, View, Text,StyleSheet,StatusBar,ActivityIndicator,ScrollView } from 'react-native';
 import Button from '../modules/Button'
 import * as actionCreators from "../redux/actions/loginActions";
+import CodePush from 'react-native-code-push'
 import Modal from 'react-native-modalbox';
+import * as CONFIG from "../equipment/ComponentUtil";
+import { ListRow,Toast } from "teaset";
+import ToastView from '../equipment/ToastUtil'
+
 class LoginScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         const { params } = navigation.state;
         StatusBar.setBarStyle('dark-content');
-        StatusBar.setBackgroundColor(navigationOptions.headerTintColor,true)
+        !CONFIG.OS && StatusBar.setBackgroundColor(navigationOptions.headerTintColor,true)
         return {
             title: params ? params.otherParam : 'LoginScreen',
-            header:null
+            // header:null
+            headerStyle: {
+                backgroundColor: "#f7f7f7",
+            },
+            headerRight:<View/>,
+            headerTintColor: navigationOptions.headerStyle.backgroundColor,
         }
     }
     state={
         phone:"123",
         password:"456",
-      }
+        per:0
+    }
+
     onChangeText = text => {
         console.log(text);
     }
@@ -30,31 +42,64 @@ class LoginScreen extends Component {
            this.props.actions.login({'phone':this.state.phone,'password':this.state.password});//dispath 登陆
         }
       }
+      onCheckForUpdate = () => {
+        ToastView.showCustom("检测更新");
+        CodePush.checkForUpdate(CONFIG.CODEPUS_KEY)
+            .then((update) => {
+                ToastView.hideCustom();
+                if (!update) {
+                    Toast.smile("暂无更新",1500);
+                } else {
+                    Alert.alert("有可用更新"+update.label,update.description,
+                    [
+                        
+                        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'destructive'},
+                        {text: '更新', onPress: () => {
+                            update.download(mess=>{
+                                let receivedBytes = (mess.receivedBytes / 1024).toFixed(3);
+                                let totalBytes = (mess.totalBytes / 1024).toFixed(3);
+                                let per = parseInt((receivedBytes / totalBytes) * 100);
+                                this.setState({per})
+                            }).then((LocalPackage)=>{
+                                LocalPackage.install(CodePush.InstallMode.IMMEDIATE,0)
+                            })
+                        }},
+                      ],
+                );
+                }
+            })
+            .catch((error)=>{
+                ToastView.hideCustom();
+                Toast.sad("更新失败",1500);
+            })
+      }
     render(){
         return(
-            <View style={styles.container}>
-                <View style={{flexDirection:'row',}}>
-                    <Text style={styles.counterText}>isLoggedIn:</Text>
-                    <Text style={[styles.counterText,styles.counterTextRed]}>{this.props.state.login.isLoggedIn+""}</Text>
+            <ScrollView style={styles.container}>
+                <ListRow title='Production:' detail={CONFIG.CODEPUS_KEY} titlePlace='top' detailStyle={styles.counterTextRed}/>
+                <ListRow title='更新进度:' detail={this.state.per} />
+                <ListRow title='isLoggedIn:' detail={this.props.state.login.isLoggedIn+""} />
+                <ListRow title='status:' detail={this.props.state.login.status+''} />
+                <ListRow title='User Data:' detail={JSON.stringify(this.props.state.login.user)} titlePlace='top' detailStyle={styles.counterTextRed}/>
+
+                <View style={{paddingHorizontal:10,paddingVertical:10}}>
+                    <Button
+                        onClick={this.login}
+                        title={"Go to Magical World"}
+                        bgColor='#E67E23'
+                    />
+                    <Button
+                        onClick={()=>this.props.navigation.navigate('HomeScreen')}
+                        title={"进入案例区"}
+                        bgColor='#C0392C'
+                    />
+                    <Button
+                        onClick={this.onCheckForUpdate}
+                        title={"检测更新"}
+                        bgColor='#16A085'
+                    />
                 </View>
-                <View style={{flexDirection:'row',}}>
-                    <Text style={styles.counterText}>status:</Text>
-                    <Text style={[styles.counterText,styles.counterTextRed]}>{this.props.state.login.status+''}</Text>
-                </View>
-                <View style={{flexDirection:'row',}}>
-                    <Text style={styles.counterText}>user:</Text>
-                    <Text style={[styles.counterText,styles.counterTextRed]}>{JSON.stringify(this.props.state.login.user)}</Text>
-                </View>
-                <Button
-                    onClick={this.login}
-                    title={"Go to Magical World"}
-                    bgColor='#9DABC0'
-                />
-                <Button
-                    onClick={()=>this.props.navigation.navigate('HomeScreen')}
-                    title={"进入案例区"}
-                    bgColor='#E3C883'
-                />
+                
                 <Modal
                     style={styles.modal}
                     ref='modal'
@@ -67,7 +112,7 @@ class LoginScreen extends Component {
                     />
                     <Text style={{marginTop:15,fontSize:16,color:'#444444'}}>登陆中...</Text>
                 </Modal>
-            </View>
+            </ScrollView>
             
         );
     }
@@ -75,17 +120,15 @@ class LoginScreen extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#fff',
-      paddingHorizontal:10
+      backgroundColor: '#f7f7f7',
     },
     counterText:{
         fontSize:22,
         fontWeight:'bold'
     },
     counterTextRed:{
-        color:'red'
+        color:'red',
+        fontWeight:'bold'
     },
     modal: {
         justifyContent: 'center',
@@ -108,3 +151,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(LoginScreen)
+
+// { deploymentKey: 'o1kLkW73Fosz7Wp3MWkWKHNoTbQG4ksvOXqog',
+//   description: '1.优化操作流程',
+//   label: 'v2',
+//   appVersion: '1.0.1',
+//   isMandatory: true,
+//   packageHash: 'a06e33a3b3cb4761911808050658fe1eaf6b6e73e032dc9dd39f43e4d2ad7ac2',
+//   packageSize: 329815,
+//   downloadUrl: 'http://180.76.138.89:3000/download/fu/FudmdBZNmfaEOOnlxcvWzfdzEvfV',
+//   download: [Function: download],
+//   isPending: false,
+//   failedInstall: false 
+// }
