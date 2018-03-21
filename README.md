@@ -8,14 +8,14 @@
 - [ ] native 层
 
 #### 案例效果图
-<center class="third">
-    <img src="./assets/new_login.jpg" />
-    <img src="./assets/new_list.jpg" />
-    <img src="./assets/new_image.jpg" />
+<center class="half">
+    <img src="./assets/new_login.jpg" width="300px"/>
+    <img src="./assets/new_list.jpg" width="300px"/>
+    <img src="./assets/new_image.jpg" width="300px"/>
 </center>
 
 <figure>
-   <img src="./assets/new_info.jpg"/>
+   <img src="./assets/new_info.jpg" width="300px"/>
 </figure> 
 
 ### 快捷地址：
