@@ -50,6 +50,8 @@
 简而言之，这是一个函数，在Action到达Reducer之前，将使用Action调用该函数。
 
 在这个功能中，你可以让Action继续前进，你可以阻止它继续前进，或者你可以改变它，并把它发送给下一个。
+
+
 [new-nav-redux]:http://blog.csdn.net/qq_33323251/article/details/79430398
 [immutable-blog]: https://github.com/camsong/blog/issues/3
 [Middleware]: http://redux.js.org/docs/advanced/Middleware.html
