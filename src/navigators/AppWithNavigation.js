@@ -10,6 +10,7 @@ import CounterScreen from '../page/home/containers/Counter'
 import SetEvent from '../page/setview'
 import ImmutableList from "../page/Immutable/List";
 import Carousel from '../page/home/containers/Carousel'
+import OpenWebView from "../components/WebView";
 
 const MainStack = StackNavigator(
 	{
@@ -33,6 +34,9 @@ const MainStack = StackNavigator(
 		},
 		CarouselScreen: {
 			screen:Carousel
+		},
+		OpenWebViewScreen: {
+			screen:OpenWebView
 		}
 	},
 	{

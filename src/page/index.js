@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import { Alert,AlertIOS,Image, View, Text,StyleSheet,StatusBar,ActivityIndicator,ScrollView } from 'react-native';
+import * as dialogType from "../redux/actions/dialogType";
 import Button from '../modules/Button'
 import * as actionCreators from "../redux/actions/loginActions";
 import CodePush from 'react-native-code-push'
@@ -98,6 +99,11 @@ class LoginScreen extends Component {
                         title={"检测更新"}
                         bgColor='#16A085'
                     />
+                    <Button
+                       onClick={this.props.showDialog}
+                        title={"Dialog"}
+                        bgColor='#188eee'
+                    />
                 </View>
                 
                 <Modal
@@ -112,11 +118,14 @@ class LoginScreen extends Component {
                     />
                     <Text style={{marginTop:15,fontSize:16,color:'#444444'}}>登陆中...</Text>
                 </Modal>
+                
             </ScrollView>
             
         );
     }
 }
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -147,7 +156,9 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        actions: bindActionCreators(actionCreators, dispatch)
+        actions: bindActionCreators(actionCreators, dispatch),
+        showDialog: ()=>dispatch(dialogType.SHOW_DIALOG),
+        hideDialog: ()=>dispatch(dialogType.HIDE_DIALOG),
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(LoginScreen)

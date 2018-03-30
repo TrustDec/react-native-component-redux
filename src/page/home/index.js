@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Image, View, Text,StyleSheet,StatusBar } from 'react-native';
+import * as dialogType from "../../redux/actions/dialogType";
 import Button from '../../modules/Button'
 import { ColorUtils } from "../../equipment/ColorUtils";
 import * as CONFIG from "../../equipment/ComponentUtil";
@@ -21,6 +22,9 @@ class HomeScreen extends Component {
     }
     onNavigateRouthPush = routhName => {
         this.props.navigation.navigate(routhName);
+    }
+    openWebView = () => {
+        this.props.navigation.navigate('OpenWebViewScreen');
     }
     render(){
         return(
@@ -43,11 +47,12 @@ class HomeScreen extends Component {
                 <Button
                     onClick={this.onNavigateRouthPush.bind(this,'TodoScreen')}
                     title={"Go to TodoScreen"}
-                    bgColor='#3FBF66'
+                    bgColor='#2F3436'
                 />
                 <Button
                     onClick={this.onNavigateRouthPush.bind(this,'SetEventScreen')}
                     title={"Go to SetViewScreen"}
+                    bgColor='rgb(215, 82, 145)'
                 />
                 <Button
                     onClick={this.onNavigateRouthPush.bind(this,'ImmutableList')}
@@ -58,6 +63,16 @@ class HomeScreen extends Component {
                     onClick={()=>alert(ColorUtils.hex2Rgb('#188eee'))}
                     title={"转换成rgb"}
                     bgColor='#188eee'
+                />
+                <Button
+                    onClick={this.openWebView}
+                    title={"测试WebView"}
+                    bgColor='#8E44AD'
+                />
+                <Button
+                    onClick={this.props.showDialog}
+                    title={"ShowDialog"}
+                    bgColor='#5ACBC8'
                 />
             </View>
             
@@ -74,4 +89,10 @@ const styles = StyleSheet.create({
       paddingHorizontal:10
     },
 });
-export default connect()(HomeScreen)
+const mapStateToProps = () => ({});
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        showDialog: ()=>dispatch(dialogType.SHOW_DIALOG)
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(HomeScreen)
