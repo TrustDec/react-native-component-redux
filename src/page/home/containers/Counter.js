@@ -15,10 +15,10 @@ class CounterScreen extends Component {
         }
     }
     render(){
-        const { counter,increment,decrement, navigation } = this.props;
+        const { counter,increment,decrement, navigation,theme } = this.props;
         return(
             <View style={styles.container}>
-                <Text style={styles.counterText}>当前数值：{counter}</Text>
+                <Text style={[styles.counterText,theme.styles.navFont]}>当前数值：{counter}</Text>
                 <Button
                     onClick={increment}
                     title={"增"}
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     return {
         counter: state.counter,
+        theme:state.theme
     }
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

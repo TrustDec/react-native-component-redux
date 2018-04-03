@@ -5,6 +5,7 @@ import todos from "./todos";
 import visibilityFilter from "./visibilityFilter";
 import login from "./login";
 import dialog from './dialog';
+import theme from './theme';
 
 const AppReducer = combineReducers({
     nav,
@@ -12,6 +13,7 @@ const AppReducer = combineReducers({
     todos,
     visibilityFilter,
     login,
-    dialog
+    dialog,
+    theme
 });
 export default AppReducer;

@@ -77,7 +77,7 @@ class LoginScreen extends Component {
     render(){
         return(
             <ScrollView style={styles.container}>
-                <ListRow title='Production:' detail={CONFIG.CODEPUS_KEY} titlePlace='top' detailStyle={styles.counterTextRed}/>
+                <ListRow title='Production:' detail={CONFIG.CODEPUS_KEY} titlePlace='top' detailStyle={[styles.counterTextRed,this.props.state.theme.styles.navFont]}/>
                 <ListRow title='更新进度:' detail={this.state.per} />
                 <ListRow title='isLoggedIn:' detail={this.props.state.login.isLoggedIn+""} />
                 <ListRow title='status:' detail={this.props.state.login.status+''} />
@@ -151,7 +151,8 @@ const mapStateToProps = (state) => {
     return{
         isLoggedIn:state.login.isLoggedIn,
         status:state.login.status,
-        state:state
+        state:state,
+        theme:state.theme
       };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

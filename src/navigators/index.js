@@ -6,6 +6,7 @@ import * as dialogType from "../redux/actions/dialogType";
 import ReactNavigation from "react-navigation";
 import AppNavigator from './AppWithNavigation';
 import { addListener } from "../redux/util";
+import Button from '../modules/Button'
 const {StackNavigator,TabNavigator,TabBarBottom,addNavigationHelpers, NavigationActions} = ReactNavigation;
 
 class ReduxNavigation extends Component {
@@ -33,15 +34,17 @@ class ReduxNavigation extends Component {
         }
     }
     render() {
-        const { dispatch, nav, dialog } = this.props;
+        const { dispatch, nav, dialog, setTheme, theme } = this.props;
         console.log(this.props);
         const navigation = addNavigationHelpers({
             dispatch,
             state: nav,
             addListener,
+            theme
         });
+        console.log(dialog)
         return <View style={{flex:1}}>
-            <AppNavigator navigation={navigation} />;
+            <AppNavigator navigation={navigation} />
             <PopupDialog
                     ref={(popupDialog) => { this.popupDialog = popupDialog; }}
                     dialogAnimation={scaleAnimation}
@@ -59,25 +62,37 @@ class ReduxNavigation extends Component {
                       ]}
                 >
                     <View>
-                        <Text>Hello</Text>
+                    <Button
+                       onClick={this.props.setTheme}
+                        title={"默认绿色"}
+                        bgColor='#188eee'
+                    />
+                    <Button
+                        onClick={this.props.setDefaultTheme}
+                        title={"默认颜色"}
+                        bgColor='#16A085'
+                    />
+                        <Text style={theme.styles.navFont} >知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得。物有本末，事有终始。知所先后，则近道矣。
+</Text>
                     </View>
                 </PopupDialog>
         </View>
     }
 }
 const scaleAnimation = new ScaleAnimation();
-//export default connect(({ nav }) => ({ nav }))(ReduxNavigation);
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         nav:state.nav,
-        dialog:state.dialog
+        dialog:state.dialog,
+        theme:state.theme
     }
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+        dispatch:dispatch,
         hideDialog: ()=>dispatch(dialogType.HIDE_DIALOG),
-        dispatch:dispatch
+        setTheme:()=>dispatch({type:'DARK_THEME'}),
+        setDefaultTheme:()=>dispatch({type:'DEFAULT_THEME'})
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(ReduxNavigation);

@@ -6,7 +6,6 @@ const initialState={
   };
   //reducer处理函数更新state,渲染UI(主要根据传入旧的state,)
 export default function login(state=initialState,action={}){
-
     switch(action.type) {
       case types.LOGIN:
       console.log(" 登录后");
