@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { Provider } from 'react-redux';
-import { AppRegistry,View } from 'react-native';
+import { AppRegistry } from 'react-native';
 import AppWithNavigationState from "./navigators";
 import store,{ middleware } from './redux/util';
 import CodePush from 'react-native-code-push'

@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { BackHandler,ToastAndroid,View,Text, } from "react-native";
+import { BackHandler,ToastAndroid,View,Text,YellowBox } from "react-native";
 import { DialogButton,DialogTitle } from "react-native-popup-dialog";
 import SplashScreen from 'react-native-splash-screen';
 import * as dialogType from "../redux/actions/dialogType";
@@ -18,12 +18,14 @@ const cancelBtn = {
     text: '取消按钮',
     onPress: ()=>false
 };
+// 临时 取消警告⚠️
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 class ReduxNavigation extends Component {
     componentDidMount() {
         BackHandler.addEventListener("hardwareBackPress", this.onBackButtonPressAndroid);
         setTimeout(()=>{
             SplashScreen.hide();
-        },1500);
+        },1000);
     }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.onBackButtonPressAndroid);

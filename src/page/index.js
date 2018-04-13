@@ -11,32 +11,51 @@ import * as CONFIG from "../equipment/ComponentUtil";
 import { ListRow,Toast } from "teaset";
 import ToastView from '../equipment/ToastUtil'
 import PopupDialog from '../modules/PopupDialog';
+import MaskedView from '../modules/MaskedView';
 
 class LoginScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
-        const { params } = navigation.state;
-        StatusBar.setBarStyle('dark-content');
-        !CONFIG.OS && StatusBar.setBackgroundColor(navigationOptions.headerTintColor,true)
-        return {
-            title: params ? params.otherParam : 'LoginScreen',
-            // header:null
-            headerStyle: {
-                backgroundColor: "#f7f7f7",
-            },
-            headerRight:<View/>,
-            headerTintColor: navigationOptions.headerStyle.backgroundColor,
-        }
+        return { header:null }
+        // const { params } = navigation.state;
+        // StatusBar.setBarStyle('dark-content');
+        // !CONFIG.OS && StatusBar.setBackgroundColor(navigationOptions.headerTintColor,true)
+        // return {
+        //     title: params ? params.otherParam : 'LoginScreen',
+        //     // header:null
+        //     headerStyle: {
+        //         backgroundColor: "#f7f7f7",
+        //     },
+        //     headerRight:<View/>,
+        //     headerTintColor: navigationOptions.headerStyle.backgroundColor,
+        // }
     }
     state={
         phone:"123",
         password:"456",
-        per:0
+        per:0,
+        appReady: false,
+        rootKey: Math.random(),
     }
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log(nextProps, nextState)
-    //     console.log(nextState)
-    //     return true;
-    // }
+    constructor() {
+        super();
+    
+        this._image = require('../image/twitter.png');
+      }
+      componentDidMount() {
+        this.resetAnimation();
+      }
+      resetAnimation() {
+        this.setState({
+          appReady: false,
+          rootKey: Math.random()
+        });
+    
+        setTimeout(() => {
+          this.setState({
+            appReady: true,
+          });
+        }, 1200);
+      }
     onChangeText = text => {
         console.log(text);
     }
@@ -81,50 +100,56 @@ class LoginScreen extends Component {
       }
     render(){
         return(
-            <ScrollView style={styles.container}>
-                <ListRow title='Production:' detail={CONFIG.CODEPUS_KEY} titlePlace='top' detailStyle={[styles.counterTextRed,this.props.state.theme.styles.navFont]}/>
-                <ListRow title='更新进度:' detail={this.state.per} />
-                <ListRow title='isLoggedIn:' detail={this.props.state.login.isLoggedIn+""} />
-                <ListRow title='status:' detail={this.props.state.login.status+''} />
-                <ListRow title='User Data:' detail={JSON.stringify(this.props.state.login.user)} titlePlace='top' detailStyle={styles.counterTextRed}/>
+            <View style={styles.container} key={this.state.rootKey} >
+                <MaskedView
+                    isLoaded={this.state.appReady}
+                    imageSource={this._image}
+                    backgroundStyle={styles.loadingBackgroundStyle}
+                >
+                    <View style={{height:20,backgroundColor:'#fff'}}/>
+                    <ListRow title='Production:' detail={CONFIG.CODEPUS_KEY} titlePlace='top' detailStyle={[styles.counterTextRed,this.props.state.theme.styles.navFont]}/>
+                    <ListRow title='更新进度:' detail={this.state.per} /> 
+                    <ListRow title='isLoggedIn:' detail={this.props.state.login.isLoggedIn+""} /> 
+                    <ListRow title='status:' detail={this.props.state.login.status+''} /> 
+                    <ListRow title='User Data:' detail={JSON.stringify(this.props.state.login.user)} titlePlace='top' detailStyle={styles.counterTextRed}/> 
 
-                <View style={{paddingHorizontal:10,paddingVertical:10}}>
-                    <Button
-                        onClick={this.login}
-                        title={"Go to Magical World"}
-                        bgColor='#E67E23'
-                    />
-                    <Button
-                        onClick={()=>this.props.navigation.navigate('HomeScreen')}
-                        title={"进入案例区"}
-                        bgColor='#C0392C'
-                    />
-                    <Button
-                        onClick={this.onCheckForUpdate}
-                        title={"检测更新"}
-                        bgColor='#16A085'
-                    />
-                    <Button
-                       onClick={this.props.showDialog}
-                        title={"Dialog"}
-                        bgColor='#188eee'
-                    />
-                </View>
-                
-                <Modal
-                    style={styles.modal}
-                    ref='modal'
-                    isOpen={this.props.status=='doing'?true:false}
-                    animationDuration={0}
-                    position={"center"}
-                    >
-                    <ActivityIndicator
-                    size='large'
-                    />
-                    <Text style={{marginTop:15,fontSize:16,color:'#444444'}}>登陆中...</Text>
-                </Modal>
-                
-            </ScrollView>
+                    <View style={{paddingHorizontal:10,paddingVertical:10}}>
+                        <Button
+                            onClick={this.login}
+                            title={"Go to Magical World"}
+                            bgColor='#E67E23'
+                        /> 
+                        <Button
+                            onClick={()=>this.props.navigation.navigate('HomeScreen')}
+                            title={"进入案例区"}
+                            bgColor='#C0392C'
+                        />
+                        <Button
+                            onClick={this.onCheckForUpdate}
+                            title={"检测更新"}
+                            bgColor='#16A085'
+                        />
+                        <Button
+                        onClick={this.props.showDialog}
+                            title={"Dialog"}
+                            bgColor='#188eee'
+                        />
+                    </View>
+                    
+                    <Modal
+                        style={styles.modal}
+                        ref='modal'
+                        isOpen={this.props.status=='doing'?true:false}
+                        animationDuration={0}
+                        position={"center"}
+                        >
+                        <ActivityIndicator
+                        size='large'
+                        />
+                        <Text style={{marginTop:15,fontSize:16,color:'#444444'}}>登陆中...</Text>
+                    </Modal>
+                </MaskedView>
+            </View>
             
         );
     }
@@ -150,6 +175,9 @@ const styles = StyleSheet.create({
         width:150,
         height:150,
         borderRadius:10,
+      },
+      loadingBackgroundStyle: {
+        backgroundColor: 'rgba(65, 140, 231,1)',
       },
 });
 const mapStateToProps = (state) => {

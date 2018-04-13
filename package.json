@@ -1,31 +1,31 @@
 {
   "name": "AwesomeProject",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
-    "core-js": "^2.5.3",
+    "core-js": "^2.5.5",
     "immutable": "^3.8.2",
-    "react": "16.2.0",
-    "react-native": "^0.54.1",
+    "react": "16.3.1",
+    "react-native": "0.55.2",
     "react-native-blur": "^3.2.2",
     "react-native-code-push": "^5.3.2",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-modalbox": "^1.4.2",
     "react-native-popup-dialog": "^0.11.46",
-    "react-native-snap-carousel": "^3.6.0",
+    "react-native-snap-carousel": "^3.7.0",
     "react-native-splash-screen": "^3.0.6",
-    "react-native-vector-icons": "^4.5.0",
-    "react-navigation": "^1.5.1",
-    "react-navigation-redux-helpers": "^1.0.3",
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^1.5.11",
+    "react-navigation-redux-helpers": "^1.0.5",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "teaset": "^0.5.5"
+    "teaset": "^0.5.6"
   },
   "devDependencies": {
     "babel-jest": "22.4.1",
