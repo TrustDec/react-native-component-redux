@@ -1,8 +1,8 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { BackHandler,ToastAndroid,View,Text, } from "react-native";
-// import PopupDialog,{ SlideAnimation,DialogTitle,ScaleAnimation,DialogButton } from 'react-native-popup-dialog';
 import { DialogButton,DialogTitle } from "react-native-popup-dialog";
+import SplashScreen from 'react-native-splash-screen';
 import * as dialogType from "../redux/actions/dialogType";
 import ReactNavigation from "react-navigation";
 import AppNavigator from './AppWithNavigation';
@@ -21,6 +21,9 @@ const cancelBtn = {
 class ReduxNavigation extends Component {
     componentDidMount() {
         BackHandler.addEventListener("hardwareBackPress", this.onBackButtonPressAndroid);
+        setTimeout(()=>{
+            SplashScreen.hide();
+        },2000);
     }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.onBackButtonPressAndroid);

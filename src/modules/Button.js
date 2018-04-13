@@ -1,16 +1,23 @@
 import React,{Component} from 'react'
 import PropTypes from 'prop-types'
+import LinearGradient from 'react-native-linear-gradient';
 import { Text,TouchableOpacity,StyleSheet,Dimensions } from "react-native";
+import { ColorUtils } from "../equipment/ColorUtils";
 
-export default Button = ({ onClick, bgColor, title }) => (
-    <TouchableOpacity 
+export default Button = ({ onClick, bgColor, title }) => {
+    let color = ColorUtils.hex2Rgb('#0D656C');
+    return <TouchableOpacity 
         onPress={onClick}
         activeOpacity={.6}
-        style={[styles.container,{backgroundColor:bgColor}]} 
+        style={[styles.container]} 
         underlayColor={''}>
-        <Text style={styles.buttonTitle}>{title}</Text>
+        <LinearGradient 
+            colors={[bgColor,bgColor, bgColor]}
+            style={styles.container}>
+            <Text style={[styles.buttonTitle]}>{title}</Text>
+        </LinearGradient>
     </TouchableOpacity>
-);
+};
 Button.propTypes = {
     title: PropTypes.string.isRequired,
     bgColor: PropTypes.string.isRequired,

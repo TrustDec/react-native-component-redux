@@ -16,7 +16,7 @@ export class ColorUtils {
             for (let i = 1; i < 7; i += 2) {
                 sColorChange.push(parseInt("0x" + sColor.slice(i, i + 2)));
             }
-            return "RGB(" + sColorChange.join(",") + ")";
+            return "rgb(" + sColorChange.join(",") + ")";
         } else {
             return sColor;
         }
