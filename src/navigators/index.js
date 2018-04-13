@@ -23,7 +23,7 @@ class ReduxNavigation extends Component {
         BackHandler.addEventListener("hardwareBackPress", this.onBackButtonPressAndroid);
         setTimeout(()=>{
             SplashScreen.hide();
-        },2000);
+        },1500);
     }
     componentWillUnmount() {
         BackHandler.removeEventListener("hardwareBackPress", this.onBackButtonPressAndroid);
@@ -47,7 +47,6 @@ class ReduxNavigation extends Component {
     }
     render() {
         const { dispatch, nav, dialog, setTheme, theme } = this.props;
-        console.log(this.props);
         const navigation = addNavigationHelpers({
             dispatch,
             state: nav,
@@ -60,20 +59,8 @@ class ReduxNavigation extends Component {
                     show={dialog.isShow} 
                     confirmBtn={{title:'set dark',bgColor:'#188eee',disabled:theme.id === 'dark',onPress:this.props.setTheme}}
                     cancelBtn={{title:'关闭按钮',bgColor:'#9DABC0',onPress:this.props.hideDialog}}
-                    dialogTitle={<DialogTitle title="PopupDialog"/>}
+                    dialogTitle={dialog.dialogTitle}
                 >
-                    <View style={{marginTop:10}}>
-                        <Text style={theme.styles.navFont} >
-                            知止而后有定，定而后能静，静而后能安，安而后能虑，虑而后能得。物有本末，事有终始。知所先后，则近道矣。
-                        </Text>
-                        {
-                            theme.id !== 'default' && <Button
-                                onClick={this.props.setDefaultTheme}
-                                title={"默认颜色"}
-                                bgColor='#16A085'
-                            />
-                        }
-                    </View>
                     {dialog.children}
                 </PopupDialog>
             </View>

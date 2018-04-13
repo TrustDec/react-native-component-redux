@@ -4,7 +4,6 @@ import { View,Text,TouchableOpacity,StyleSheet } from "react-native";
 import PopupDialog,{ SlideAnimation,DialogTitle,ScaleAnimation,DialogButton } from 'react-native-popup-dialog';
 
 const dialogTitle = props => <DialogTitle {...props} />;
-//const dialogTitle = () => null;
 class PopupDialogView extends Component {
     render(){
         return(

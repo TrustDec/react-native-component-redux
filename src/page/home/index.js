@@ -7,6 +7,7 @@ import { ColorUtils } from "../../equipment/ColorUtils";
 import * as CONFIG from "../../equipment/ComponentUtil";
 import ToastRoot from "../../modules/Toast";
 
+
 class HomeScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         const { params } = navigation.state;
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = () => ({});
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        showDialog: ()=>dispatch(dialogType.SHOW_DIALOG)
+        showDialog: () =>dispatch(dialogType.HOME_DIALOG)
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(HomeScreen)

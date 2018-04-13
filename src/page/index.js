@@ -105,7 +105,7 @@ class LoginScreen extends Component {
                         bgColor='#16A085'
                     />
                     <Button
-                       onClick={this.props.showDialog.bind(this,{type:'SHOW_DIALOG',children:null})}
+                       onClick={this.props.showDialog}
                         title={"Dialog"}
                         bgColor='#188eee'
                     />
@@ -163,8 +163,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         actions: bindActionCreators(actionCreators, dispatch),
-        showDialog: (element)=>dispatch(element),
+        showDialog: () => dispatch(dialogType.LOGIN_DIALOG),
         hideDialog: ()=>dispatch(dialogType.HIDE_DIALOG),
+        setDefaultTheme:()=>dispatch({type:'DEFAULT_THEME'})
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(LoginScreen)

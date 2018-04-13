@@ -1,14 +1,17 @@
-const initialState={
-    isShow:false,
-    children:null
+const initialState = {
+    isShow: false,
+    children: null,
+    dialogTitle: null
 };
 export default dialog = (state = initialState, action) => {
-    console.log(action)
     switch (action.type) {
         case 'SHOW_DIALOG':
-            return {isShow:true,children:action.children}
+            return Object.assign({}, initialState, {
+                isShow: true,
+                ...action
+            })
         case 'HIDE_DIALOG':
-            return {isShow:false,children:null}
+            return initialState
         default:
             return state
     }
