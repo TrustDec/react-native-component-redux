@@ -5,6 +5,7 @@ import * as dialogType from "../../redux/actions/dialogType";
 import Button from '../../modules/Button'
 import { ColorUtils } from "../../equipment/ColorUtils";
 import * as CONFIG from "../../equipment/ComponentUtil";
+import ToastRoot from "../../modules/Toast";
 
 class HomeScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
@@ -79,6 +80,11 @@ class HomeScreen extends Component {
                     onClick={this.onNavigateRouthPush.bind(this,'ES6Screen')}
                     title={"ES6Screen"}
                     bgColor='#5ACBC8'
+                />
+                <Button
+                    onClick={()=>ToastRoot.show('Toast模块', ToastRoot.SHORT)}
+                    title={"ToastRoot"}
+                    bgColor='#8E44AD'
                 />
             </View>
         </ScrollView>

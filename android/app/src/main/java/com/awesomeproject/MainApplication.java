@@ -35,8 +35,9 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new BlurViewPackage(),
             new LinearGradientPackage(),
-            new CodePush(null, getApplicationContext(), BuildConfig.DEBUG),
-            new VectorIconsPackage()
+              new CodePush("FblmCRWTrhBTK4pHOxDzOfdqQvs04ksvOXqog", getApplicationContext(), BuildConfig.DEBUG, "http://180.76.138.89:3000"),
+            new VectorIconsPackage(),
+              new ToastReactPackage()
       );
     }
 

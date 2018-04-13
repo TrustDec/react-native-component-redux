@@ -97,6 +97,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+
     defaultConfig {
         applicationId "com.awesomeproject"
         minSdkVersion 16
@@ -106,6 +107,8 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
     }
     splits {
         abi {
