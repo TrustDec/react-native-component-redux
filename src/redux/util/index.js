@@ -14,5 +14,5 @@ export const middleware = createReactNavigationReduxMiddleware(
 export const addListener = createReduxBoundAddListener("root");
 export default createStore(
     AppReducer,
-    applyMiddleware(thunk,middleware,createLogger),
+    applyMiddleware(thunk,middleware,/*createLogger*/),
   );

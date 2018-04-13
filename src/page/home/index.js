@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Image, View, Text,StyleSheet,StatusBar } from 'react-native';
+import { Image, View, Text,StyleSheet,StatusBar,ScrollView } from 'react-native';
 import * as dialogType from "../../redux/actions/dialogType";
 import Button from '../../modules/Button'
 import { ColorUtils } from "../../equipment/ColorUtils";
@@ -28,6 +28,7 @@ class HomeScreen extends Component {
     }
     render(){
         return(
+            <ScrollView >
             <View style={styles.container}>
                 <Button
                     onClick={this.onNavigateRouthPush.bind(this,'CarouselScreen')}
@@ -74,7 +75,13 @@ class HomeScreen extends Component {
                     title={"ShowDialog"}
                     bgColor='#5ACBC8'
                 />
+                <Button
+                    onClick={this.onNavigateRouthPush.bind(this,'ES6Screen')}
+                    title={"ES6Screen"}
+                    bgColor='#5ACBC8'
+                />
             </View>
+        </ScrollView>
             
         );
     }

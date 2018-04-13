@@ -10,6 +10,7 @@ import Modal from 'react-native-modalbox';
 import * as CONFIG from "../equipment/ComponentUtil";
 import { ListRow,Toast } from "teaset";
 import ToastView from '../equipment/ToastUtil'
+import PopupDialog from '../modules/PopupDialog';
 
 class LoginScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
@@ -31,7 +32,11 @@ class LoginScreen extends Component {
         password:"456",
         per:0
     }
-
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log(nextProps, nextState)
+    //     console.log(nextState)
+    //     return true;
+    // }
     onChangeText = text => {
         console.log(text);
     }
@@ -100,7 +105,7 @@ class LoginScreen extends Component {
                         bgColor='#16A085'
                     />
                     <Button
-                       onClick={this.props.showDialog}
+                       onClick={this.props.showDialog.bind(this,{type:'SHOW_DIALOG',children:null})}
                         title={"Dialog"}
                         bgColor='#188eee'
                     />
@@ -158,7 +163,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         actions: bindActionCreators(actionCreators, dispatch),
-        showDialog: ()=>dispatch(dialogType.SHOW_DIALOG),
+        showDialog: (element)=>dispatch(element),
         hideDialog: ()=>dispatch(dialogType.HIDE_DIALOG),
     }
 };

@@ -11,6 +11,7 @@ import SetEvent from '../page/setview'
 import ImmutableList from "../page/Immutable/List";
 import Carousel from '../page/home/containers/Carousel'
 import OpenWebView from "../components/WebView";
+import ECMAScript2016 from '../page/ECMAScript2016';
 
 const MainStack = StackNavigator(
 	{
@@ -37,6 +38,9 @@ const MainStack = StackNavigator(
 		},
 		OpenWebViewScreen: {
 			screen:OpenWebView
+		},
+		ES6Screen: {
+			screen:ECMAScript2016
 		}
 	},
 	{
