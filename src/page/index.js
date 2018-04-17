@@ -1,7 +1,9 @@
 import React,{ Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-import { Alert,AlertIOS,Image, View, Text,StyleSheet,StatusBar,ActivityIndicator,ScrollView } from 'react-native';
+import SyanImagePicker from 'react-native-syan-image-picker';
+import { NavigationActions } from 'react-navigation';
+import { Alert,AlertIOS,Image, View, Text,StyleSheet,StatusBar,ActivityIndicator,ScrollView,LayoutAnimation } from 'react-native';
 import * as dialogType from "../redux/actions/dialogType";
 import Button from '../modules/Button'
 import * as actionCreators from "../redux/actions/loginActions";
@@ -12,7 +14,18 @@ import { ListRow,Toast } from "teaset";
 import ToastView from '../equipment/ToastUtil'
 import PopupDialog from '../modules/PopupDialog';
 import MaskedView from '../modules/MaskedView';
-
+const customAnimationConfig = {
+    duration: 400,
+    create: {
+        type: LayoutAnimation.Types.spring,
+        property: LayoutAnimation.Properties.scaleXY,
+        springDamping: 1,
+    },
+    update: {
+        type: LayoutAnimation.Types.spring,
+        springDamping: 1,
+    },
+};
 class LoginScreen extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         return { header:null }
@@ -65,6 +78,15 @@ class LoginScreen extends Component {
         }else{
             this.refs.modal.open();//loading 状态
            this.props.actions.login({'phone':this.state.phone,'password':this.state.password});//dispath 登陆
+           const resetAction = NavigationActions.reset({
+                index: 0,
+                actions: [
+                    NavigationActions.navigate({ routeName: 'NavigationBar' }),
+                ]
+            });
+            LayoutAnimation.configureNext(customAnimationConfig);
+            this.props.navigation.dispatch(resetAction);
+           console.log(this.props);
         }
       }
       onCheckForUpdate = () => {
@@ -116,7 +138,7 @@ class LoginScreen extends Component {
                     <View style={{paddingHorizontal:10,paddingVertical:10}}>
                         <Button
                             onClick={this.login}
-                            title={"Go to Magical World"}
+                            title={"模拟登录"}
                             bgColor='#E67E23'
                         /> 
                         <Button
@@ -132,6 +154,20 @@ class LoginScreen extends Component {
                         <Button
                         onClick={this.props.showDialog}
                             title={"Dialog"}
+                            bgColor='#188eee'
+                        />
+                        <Button
+                            onClick={()=>{
+                                SyanImagePicker.showImagePicker({imageCount: 9, isRecordSelected: true}, (err, photos) => {
+                                    if (err) {
+                                      // 取消选择
+                                      return;
+                                    }
+                                    // 选择成功，渲染图片
+                                    // ...
+                                  })
+                            }}
+                            title={"SyanImagePicker"}
                             bgColor='#188eee'
                         />
                     </View>

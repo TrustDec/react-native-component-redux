@@ -4331,6 +4331,10 @@ react-native-splash-screen@^3.0.6:
   version "3.0.6"
   resolved "http://registry.npm.taobao.org/react-native-splash-screen/download/react-native-splash-screen-3.0.6.tgz#c0bbf2c8ae40a313c4c7044f55e569414ff68332"
 
+react-native-syan-image-picker@^0.1.6:
+  version "0.1.6"
+  resolved "http://registry.npm.taobao.org/react-native-syan-image-picker/download/react-native-syan-image-picker-0.1.6.tgz#d3979caa099c5127ce9dbab3f7765972494b102e"
+
 "react-native-tab-view@github:react-navigation/react-native-tab-view":
   version "0.0.74"
   resolved "https://codeload.github.com/react-navigation/react-native-tab-view/tar.gz/36ebd834d78b841fc19778c966465d02fd1213bb"

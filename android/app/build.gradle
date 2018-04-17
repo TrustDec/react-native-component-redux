@@ -149,6 +149,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-syan-image-picker')
     compile project(':react-native-splash-screen')
     compile project(':react-native-blur')
     compile project(':react-native-linear-gradient')

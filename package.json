@@ -18,6 +18,7 @@
     "react-native-popup-dialog": "^0.11.46",
     "react-native-snap-carousel": "^3.7.0",
     "react-native-splash-screen": "^3.0.6",
+    "react-native-syan-image-picker": "^0.1.6",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^1.5.11",
     "react-navigation-redux-helpers": "^1.0.5",

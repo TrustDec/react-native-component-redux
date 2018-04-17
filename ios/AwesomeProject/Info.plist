@@ -41,8 +41,16 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>是否允许此App使用你的相机进行拍照？</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>我们需要通过您的地理位置信息获取您周边的相关数据</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>请允许访问相册以选取照片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>请允许访问相册以选取照片</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
