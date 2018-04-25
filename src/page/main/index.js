@@ -32,7 +32,7 @@ export default class MainHomeScreen extends Component {
             index: 0,
             actions: [NavigationActions.navigate({ routeName: 'LoginScreen' })]
         });
-        LayoutAnimation.configureNext(customAnimationConfig);
+        LayoutAnimation.spring();
         this.props.navigation.dispatch(resetAction);
     };
     render() {

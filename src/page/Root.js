@@ -37,7 +37,7 @@ const customAnimationConfig = {
         springDamping: 1
     }
 };
-class LoginScreen extends Component {
+class LoginScreenView extends Component {
     static navigationOptions = ({ navigation, navigationOptions }) => {
         return { header: null };
         // const { params } = navigation.state;
@@ -88,14 +88,14 @@ class LoginScreen extends Component {
             Alert.alert('温馨提示', '用户名或密码不能为空！');
         } else {
             this.refs.modal.open(); //loading 状态
-            this.props.actions.login({ phone: this.state.phone, password: this.state.password }); //dispath 登陆
+            /*this.props.actions.login({ phone: this.state.phone, password: this.state.password }); //dispath 登陆
             const resetAction = NavigationActions.reset({
                 index: 0,
                 actions: [NavigationActions.navigate({ routeName: 'NavigationBar' })]
             });
             LayoutAnimation.configureNext(customAnimationConfig);
             this.props.navigation.dispatch(resetAction);
-            console.log(this.props);
+            console.log(this.props);*/
         }
     };
     onCheckForUpdate = () => {
@@ -238,7 +238,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         setDefaultTheme: () => dispatch({ type: 'DEFAULT_THEME' })
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreenView);
 
 // { deploymentKey: 'o1kLkW73Fosz7Wp3MWkWKHNoTbQG4ksvOXqog',
 //   description: '1.优化操作流程',

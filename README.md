@@ -3,10 +3,11 @@
 *   [x] 热更新 code-push
 *   [x] carousel
 *   [x] redux 案例
+*   [x] mobx 案例
 *   [x] react-navigation 案例
 *   [x] Android 硬更新
 *   [x] iOS 硬更新
-*   [ ] native 层
+*   [x] native 混合
 
 ### 项目架构
 

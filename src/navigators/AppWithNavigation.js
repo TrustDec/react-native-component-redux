@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
-import LoginScreen from '../page';
+import LoginScreen from '../page/Login';
+import RootScreen from '../page/Root';
 import ModalScreen from '../components/ModalScreen';
 import HomeScreen from '../page/home';
 import TodoListScreen from '../page/home/containers/TodoList';
@@ -71,6 +72,9 @@ const MainStack = StackNavigator(
     {
         LoginScreen: {
             screen: LoginScreen
+        },
+        RootScreen: {
+            screen: RootScreen
         },
         HomeScreen: {
             screen: HomeScreen
