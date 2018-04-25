@@ -7,6 +7,19 @@
 - [x] iOS 硬更新
 - [ ] native 层
 
+### 项目架构
+- [x] react-native,
+- [x] react-navigation,
+- [x] redux,
+- [x] mobx,
+- [x] react-native-vector-icons
+- [x] react-native-splash-screen
+- [x] react-native-code-push
+...
+
+### 自动化工具
+- [x] prettier
+
 #### 案例效果图
 <center class="half">
     <img src="./assets/new_login.jpg" width="300px"/>
