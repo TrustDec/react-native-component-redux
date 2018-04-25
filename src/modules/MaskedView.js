@@ -1,12 +1,5 @@
-
 import * as React from 'react';
-import {
-  Animated,
-  StatusBar,
-  View,
-  StyleSheet,
-  MaskedViewIOS,
-} from 'react-native';
+import { Animated, StatusBar, View, StyleSheet, MaskedViewIOS } from 'react-native';
 
 type Props = {
   children: React.Node,
