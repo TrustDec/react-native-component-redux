@@ -8,12 +8,12 @@ import dialog from './dialog';
 import theme from './theme';
 
 const AppReducer = combineReducers({
-  nav,
-  counter,
-  todos,
-  visibilityFilter,
-  login,
-  dialog,
-  theme,
+    nav,
+    counter,
+    todos,
+    visibilityFilter,
+    login,
+    dialog,
+    theme
 });
 export default AppReducer;

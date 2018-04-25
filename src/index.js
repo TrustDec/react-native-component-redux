@@ -5,9 +5,9 @@ import AppWithNavigationState from './navigators';
 import store, { middleware } from './redux/util';
 import CodePush from 'react-native-code-push';
 const Root = () => (
-  <Provider store={store}>
-    <AppWithNavigationState />
-  </Provider>
+    <Provider store={store}>
+        <AppWithNavigationState />
+    </Provider>
 );
 let codePushOptions = { checkFrequency: CodePush.CheckFrequency.MANUAL };
 const AwesomeView = CodePush(codePushOptions)(Root);

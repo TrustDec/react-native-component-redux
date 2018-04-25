@@ -1,27 +1,27 @@
 ### 功能集合
 
-* [x] 热更新 code-push
-* [x] carousel
-* [x] redux 案例
-* [x] react-navigation 案例
-* [x] Android 硬更新
-* [x] iOS 硬更新
-* [ ] native 层
+*   [x] 热更新 code-push
+*   [x] carousel
+*   [x] redux 案例
+*   [x] react-navigation 案例
+*   [x] Android 硬更新
+*   [x] iOS 硬更新
+*   [ ] native 层
 
 ### 项目架构
 
-* [x] react-native,
-* [x] react-navigation,
-* [x] redux,
-* [x] mobx,
-* [x] react-native-vector-icons
-* [x] react-native-splash-screen
-* [x] react-native-code-push
-      ...
+*   [x] react-native,
+*   [x] react-navigation,
+*   [x] redux,
+*   [x] mobx,
+*   [x] react-native-vector-icons
+*   [x] react-native-splash-screen
+*   [x] react-native-code-push
+        ...
 
 ### 自动化工具
 
-* [x] prettier
+*   [x] prettier
 
 #### 案例效果图
 
