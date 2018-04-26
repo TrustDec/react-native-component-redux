@@ -72,7 +72,6 @@ class LoginScreen extends Component<Props, State> {
                         <Text style={styles.buttonTitle}>登录</Text>
                     </TouchableOpacity>
                 </View>
-
                 <InputAccessoryView nativeID={inputAccessoryViewID} backgroundColor="#fffffff7">
                     <View style={styles.textInputContainer}>
                         <Button onPress={() => alert(1)} title="Send" />
@@ -103,7 +102,8 @@ const styles = StyleSheet.create({
     },
     buttonTitle: {
         color: '#fff',
-        fontSize: 17
+        fontSize: 17,
+        fontFamily: 'PingFangTC-Medium'
     },
     textInputContainer: {
         flexDirection: 'row'
@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255,255,255,.5)',
         borderRadius: 6,
         color: '#f1f1f1',
-        fontSize: 16.5
+        fontSize: 16.5,
+        fontFamily: 'PingFangTC-Medium'
     },
     text: {
         padding: 10,

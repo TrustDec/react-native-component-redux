@@ -35,6 +35,7 @@
 		C1595B622081115F000EE772 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C153C8C9208085FD00AE197D /* libSplashScreen.a */; };
 		C1595B6320811929000EE772 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C107CD232062369C0092BDCC /* libBVLinearGradient.a */; };
 		C1595C5D20814891000EE772 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C1595C5C20814891000EE772 /* TZImagePickerController.bundle */; };
+		C1D609A3209178F800B46958 /* Michroma.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1D60974209178D700B46958 /* Michroma.ttf */; };
 		DF73FDB979234C9F8479AB88 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBED712511344E5ADA8565A /* FontAwesome.ttf */; };
 		EFDCC6BF420E4F7BB42F02AE /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC133623B92A41C8B4630EF6 /* Ionicons.ttf */; };
 		FD30C84063F94E01930DABE1 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A696A4AB6E5349809FFEF8EA /* EvilIcons.ttf */; };
@@ -414,6 +415,7 @@
 		C107CD0E20615D840092BDCC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AwesomeProject/Images.xcassets; sourceTree = "<group>"; };
 		C1595C5C20814891000EE772 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TZImagePickerController.bundle; path = "../node_modules/react-native-syan-image-picker/ios/TZImagePickerController/TZImagePickerController.bundle"; sourceTree = "<group>"; };
 		C1595C5E20814AB7000EE772 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		C1D60974209178D700B46958 /* Michroma.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Michroma.ttf; path = "../../../../Downloads/AssetLibrary-master/Fonts/File/Michroma/Michroma.ttf"; sourceTree = "<group>"; };
 		CB85E3A3243D4DC5B0D07790 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		CEC7DE2E2DE348A1888A445C /* libRNSyanImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSyanImagePicker.a; sourceTree = "<group>"; };
 		D053671C50B94A0C87A949B0 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C1D60974209178D700B46958 /* Michroma.ttf */,
 				C1595C5C20814891000EE772 /* TZImagePickerController.bundle */,
 				13B07FAE1A68108700A75B9A /* AwesomeProject */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1251,6 +1254,7 @@
 				985627163E6C4FA89355A04D /* Foundation.ttf in Resources */,
 				EFDCC6BF420E4F7BB42F02AE /* Ionicons.ttf in Resources */,
 				AF5D140310384696A649676C /* MaterialCommunityIcons.ttf in Resources */,
+				C1D609A3209178F800B46958 /* Michroma.ttf in Resources */,
 				C107CD0F20615D840092BDCC /* Images.xcassets in Resources */,
 				9427BD1F746A43A3945E717B /* MaterialIcons.ttf in Resources */,
 				93BDEE8256F34A1688C90530 /* SimpleLineIcons.ttf in Resources */,

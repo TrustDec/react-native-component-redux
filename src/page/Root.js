@@ -88,14 +88,14 @@ class LoginScreenView extends Component {
             Alert.alert('温馨提示', '用户名或密码不能为空！');
         } else {
             this.refs.modal.open(); //loading 状态
-            /*this.props.actions.login({ phone: this.state.phone, password: this.state.password }); //dispath 登陆
+            this.props.actions.login({ phone: this.state.phone, password: this.state.password }); //dispath 登陆
             const resetAction = NavigationActions.reset({
                 index: 0,
                 actions: [NavigationActions.navigate({ routeName: 'NavigationBar' })]
             });
-            LayoutAnimation.configureNext(customAnimationConfig);
+            //LayoutAnimation.configureNext(customAnimationConfig);
             this.props.navigation.dispatch(resetAction);
-            console.log(this.props);*/
+            console.log(this.props);
         }
     };
     onCheckForUpdate = () => {
