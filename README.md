@@ -76,6 +76,13 @@
 
 在这个功能中，你可以让 Action 继续前进，你可以阻止它继续前进，或者你可以改变它，并把它发送给下一个。
 
+
+<figure class="third">
+    <img src="http://dreamofbook.qiniudn.com/Zero.png">
+    <img src="http://dreamofbook.qiniudn.com/Zero.png">
+    <img src="http://dreamofbook.qiniudn.com/Zero.png">
+</figure>
+
 [new-nav-redux]: http://blog.csdn.net/qq_33323251/article/details/79430398
 [immutable-blog]: https://github.com/camsong/blog/issues/3
 [middleware]: http://redux.js.org/docs/advanced/Middleware.html
