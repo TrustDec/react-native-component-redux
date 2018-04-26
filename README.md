@@ -77,13 +77,8 @@
 在这个功能中，你可以让 Action 继续前进，你可以阻止它继续前进，或者你可以改变它，并把它发送给下一个。
 
 <div align="center">
-    <div style="float:left;border:solid 1px 000;margin:2px;display:inline-block;">
-        <img src="http://img.blog.csdn.net/20160616131539493" alt="screenshot" title="screenshot" width="250" height="436" >
-    </div>
-    <div style="float:left;border:solid 1px 000;margin:2px;display:inline-block;">
-        <img src="http://img.blog.csdn.net/20160616131603337" alt="screenshot" title="screenshot" width="250" height="436" >
-    </div>
-    <div style="clear:both;"></div>
+    <img src="http://img.blog.csdn.net/20160616131539493" alt="screenshot" title="screenshot" width="250" height="436" >
+    <img src="http://img.blog.csdn.net/20160616131603337" alt="screenshot" title="screenshot" width="250" height="436" >
 </div>
 
 
