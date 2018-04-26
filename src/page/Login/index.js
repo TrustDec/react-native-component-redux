@@ -34,6 +34,7 @@ class LoginScreen extends Component<Props, State> {
             />
         );
     }
+
     onChangeText = text => {
         console.log(text);
     };

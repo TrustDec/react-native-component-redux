@@ -10,6 +10,7 @@ import {
     Image,
     View,
     Text,
+    TextInput,
     StyleSheet,
     StatusBar,
     ActivityIndicator,
@@ -26,13 +27,30 @@ import { ListRow, Toast } from 'teaset';
 import ToastView from '../equipment/ToastUtil';
 import PopupDialog from '../modules/PopupDialog';
 import MaskedView from '../modules/MaskedView';
-let oldRender = Text.prototype.render;
-Text.prototype.render = function(...args) {
-    let origin = oldRender.call(this, ...args);
-    return React.cloneElement(origin, {
-        style: [origin.props.style, { fontFamily: 'PingFangTC-Medium' }]
-    });
+let components = [Text, TextInput];
+const customProps = {
+    style: {
+        fontFamily: 'PingFangTC-Medium'
+    },
+    allowFontScaling: false
 };
+components.map((item, index) => {
+    const TextRender = item.prototype.render;
+    const initialDefaultProps = item.prototype.constructor.defaultProps;
+    item.prototype.constructor.defaultProps = {
+        ...initialDefaultProps,
+        ...customProps
+    };
+    item.prototype.render = function render() {
+        let oldProps = this.props;
+        this.props = { ...this.props, ...customProps, style: [this.props.style] };
+        try {
+            return TextRender.apply(this, arguments);
+        } finally {
+            this.props = oldProps;
+        }
+    };
+});
 const customAnimationConfig = {
     duration: 400,
     create: {
