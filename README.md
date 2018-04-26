@@ -78,9 +78,9 @@
 
 
 <figure class="third">
-    <img src="http://dreamofbook.qiniudn.com/Zero.png">
-    <img src="http://dreamofbook.qiniudn.com/Zero.png">
-    <img src="http://dreamofbook.qiniudn.com/Zero.png">
+    <img src="{{http://dreamofbook.qiniudn.com/Zero.png}}">
+    <img src="{{http://dreamofbook.qiniudn.com/Zero.png}}">
+    <img src="{{http://dreamofbook.qiniudn.com/Zero.png}}">
 </figure>
 
 [new-nav-redux]: http://blog.csdn.net/qq_33323251/article/details/79430398
