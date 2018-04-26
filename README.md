@@ -26,11 +26,11 @@
 
 #### 案例效果图
 
-<center class="half">
-    <img src="./assets/new_login.jpg" width="300px"/>
-    <img src="./assets/new_list.jpg" width="300px"/>
-    <img src="./assets/new_image.jpg" width="300px"/>
-</center>
+<div align="center">
+    <img src="./assets/new_login.jpg" alt="screenshot" title="screenshot" width="250" height="436" >
+    <img src="./assets/new_list.jpg" alt="screenshot" title="screenshot" width="250" height="436" >
+    <img src="./assets/new_image.jpg" alt="screenshot" title="screenshot" width="250" height="436" >
+</div>
 
 <figure>
    <img src="./assets/new_info.jpg" width="300px"/>
@@ -49,6 +49,7 @@
 > [react-navigation-redux-helpers doc][react-navigation-redux-helpers]
 
 > [react-navigation-redux error][new-nav-redux]
+
 
 <img src="./assets/tab-navigator.png"/>
 
