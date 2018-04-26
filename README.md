@@ -76,12 +76,13 @@
 
 在这个功能中，你可以让 Action 继续前进，你可以阻止它继续前进，或者你可以改变它，并把它发送给下一个。
 
-
-<figure class="third">
-    <img src="{{http://dreamofbook.qiniudn.com/Zero.png}}">
-    <img src="{{http://dreamofbook.qiniudn.com/Zero.png}}">
-    <img src="{{http://dreamofbook.qiniudn.com/Zero.png}}">
-</figure>
+<div style="float:left;border:solid 1px 000;margin:2px;">
+    <img src="http://img.blog.csdn.net/20160616131539493" alt="screenshot" title="screenshot" width="250" height="436" >
+</div>
+<div style="float:left;border:solid 1px 000;margin:2px;">
+    <img src="http://img.blog.csdn.net/20160616131603337" alt="screenshot" title="screenshot" width="250" height="436" >
+</div>
+<div style="clear:both;"></div>
 
 [new-nav-redux]: http://blog.csdn.net/qq_33323251/article/details/79430398
 [immutable-blog]: https://github.com/camsong/blog/issues/3
