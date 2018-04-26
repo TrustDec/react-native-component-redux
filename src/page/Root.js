@@ -120,9 +120,17 @@ class LoginScreenView extends Component {
                 actions: [NavigationActions.navigate({ routeName: 'NavigationBar' })]
             });
             //LayoutAnimation.configureNext(customAnimationConfig);
+            LayoutAnimation.spring();
             this.props.navigation.dispatch(resetAction);
             console.log(this.props);
         }
+    };
+    showDialog = () => {
+        const diaOptin = dialogType.LOGINMN_DIALOG;
+        diaOptin.confirmBtn.disabled = this.props.theme.id === 'dark';
+        diaOptin.confirmBtn.onPress = this.props.setTheme;
+        diaOptin.cancelBtn.onPress = this.props.hideDialog;
+        this.props.showDialog(diaOptin);
     };
     onCheckForUpdate = () => {
         ToastView.showCustom('检测更新');
@@ -187,9 +195,9 @@ class LoginScreenView extends Component {
                             onClick={() => this.props.navigation.navigate('HomeScreen')}
                             title={'进入案例区'}
                             bgColor="#C0392C"
-                        />
+                        />dialogType.LOGINMN_DIALOG
                         <Button onClick={this.onCheckForUpdate} title={'检测更新'} bgColor="#16A085" />
-                        <Button onClick={this.props.showDialog} title={'Dialog'} bgColor="#188eee" />
+                        <Button onClick={this.showDialog} title={'Dialog'} bgColor="#188eee" />
                         <Button
                             onClick={() => {
                                 SyanImagePicker.showImagePicker(
@@ -259,8 +267,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         actions: bindActionCreators(actionCreators, dispatch),
-        showDialog: () => dispatch(dialogType.LOGIN_DIALOG),
+        showDialog: option => dispatch(option),
         hideDialog: () => dispatch(dialogType.HIDE_DIALOG),
+        setTheme: () => dispatch({ type: 'DARK_THEME' }),
         setDefaultTheme: () => dispatch({ type: 'DEFAULT_THEME' })
     };
 };

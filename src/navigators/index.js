@@ -55,21 +55,12 @@ class ReduxNavigation extends Component {
             addListener,
             theme
         });
+        const confirmBtn = dialog.confirmBtn || {};
+        const cancelBtn = dialog.cancelBtn || {};
         return (
             <View style={{ flex: 1 }}>
                 <AppNavigator navigation={navigation} />
-                <PopupDialog
-                    show={dialog.isShow}
-                    confirmBtn={{
-                        title: 'set dark',
-                        bgColor: '#188eee',
-                        disabled: theme.id === 'dark',
-                        onPress: this.props.setTheme
-                    }}
-                    cancelBtn={{ title: '关闭按钮', bgColor: '#9DABC0', onPress: this.props.hideDialog }}
-                    dialogTitle={dialog.dialogTitle}>
-                    {dialog.children}
-                </PopupDialog>
+                <PopupDialog {...dialog}>{dialog.children}</PopupDialog>
             </View>
         );
     }

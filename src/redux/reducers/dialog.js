@@ -1,5 +1,5 @@
 const initialState = {
-    isShow: false,
+    show: false,
     children: null,
     dialogTitle: null
 };
@@ -7,7 +7,7 @@ export default (dialog = (state = initialState, action) => {
     switch (action.type) {
         case 'SHOW_DIALOG':
             return Object.assign({}, initialState, {
-                isShow: true,
+                show: true,
                 ...action
             });
         case 'HIDE_DIALOG':

@@ -27,6 +27,14 @@ class HomeScreen extends Component {
     openWebView = () => {
         this.props.navigation.navigate('OpenWebViewScreen');
     };
+    showDialog = () => {
+        console.log(this.props);
+        const diaOptin = dialogType.HOME_DIALOG;
+        diaOptin.confirmBtn.disabled = this.props.theme.id === 'dark';
+        diaOptin.confirmBtn.onPress = this.props.setTheme;
+        diaOptin.cancelBtn.onPress = this.props.hideDialog;
+        this.props.showDialog(dialogType.HOME_DIALOG);
+    };
     render() {
         return (
             <ScrollView>
@@ -67,7 +75,7 @@ class HomeScreen extends Component {
                         bgColor="#188eee"
                     />
                     <Button onClick={this.openWebView} title={'测试WebView'} bgColor="#8E44AD" />
-                    <Button onClick={this.props.showDialog} title={'ShowDialog'} bgColor="#5ACBC8" />
+                    <Button onClick={this.showDialog} title={'ShowDialog'} bgColor="#5ACBC8" />
                     <Button
                         onClick={this.onNavigateRouthPush.bind(this, 'ES6Screen')}
                         title={'ES6Screen'}
@@ -93,10 +101,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     }
 });
-const mapStateToProps = () => ({});
+const mapStateToProps = state => {
+    return {
+        theme: state.theme
+    };
+};
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        showDialog: () => dispatch(dialogType.HOME_DIALOG)
+        showDialog: option => dispatch(option),
+        hideDialog: () => dispatch(dialogType.HIDE_DIALOG),
+        setTheme: () => dispatch({ type: 'DARK_THEME' })
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

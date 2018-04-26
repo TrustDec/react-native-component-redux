@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import InputAccessoryView from 'InputAccessoryView';
 import { NavigationActions } from 'react-navigation';
+import * as dialogType from '../../redux/actions/dialogType';
 const {
     Alert,
     AlertIOS,
@@ -17,7 +18,9 @@ const {
     LayoutAnimation,
     TextInput,
     Button,
-    TouchableOpacity
+    TouchableOpacity,
+    Keyboard,
+    InteractionManager
 } = ReactNative;
 type Props = {};
 type State = {};
@@ -39,12 +42,18 @@ class LoginScreen extends Component<Props, State> {
         console.log(text);
     };
     onLogin = () => {
+        this.props.showDialog();
         const resetAction = NavigationActions.reset({
             index: 0,
             actions: [NavigationActions.navigate({ routeName: 'RootScreen' })]
         });
-        LayoutAnimation.linear();
-        this.props.navigation.dispatch(resetAction);
+        setTimeout(() => {
+            this.props.hideDialog();
+            InteractionManager.runAfterInteractions(() => {
+                this.props.navigation.dispatch(resetAction);
+                LayoutAnimation.linear();
+            });
+        }, 2000);
     };
     render() {
         return (
@@ -75,7 +84,7 @@ class LoginScreen extends Component<Props, State> {
                 </View>
                 <InputAccessoryView nativeID={inputAccessoryViewID} backgroundColor="#fffffff7">
                     <View style={styles.textInputContainer}>
-                        <Button onPress={() => alert(1)} title="Send" />
+                        <Button onPress={() => Keyboard.dismiss()} title="确定" />
                     </View>
                 </InputAccessoryView>
             </View>
@@ -103,8 +112,7 @@ const styles = StyleSheet.create({
     },
     buttonTitle: {
         color: '#fff',
-        fontSize: 17,
-        fontFamily: 'PingFangTC-Medium'
+        fontSize: 17
     },
     textInputContainer: {
         flexDirection: 'row'
@@ -116,8 +124,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255,255,255,.5)',
         borderRadius: 6,
         color: '#f1f1f1',
-        fontSize: 16.5,
-        fontFamily: 'PingFangTC-Medium'
+        fontSize: 16.5
     },
     text: {
         padding: 10,
@@ -139,4 +146,13 @@ const inputOption = {
     placeholderTextColor: 'rgba(255,255,255,.7)'
 };
 LoginScreen.navigationOptions = () => ({ header: null });
-export default connect()(LoginScreen);
+const mapStateToProps = state => {
+    return {};
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        showDialog: () => dispatch(dialogType.LOGIN_DIALOG),
+        hideDialog: () => dispatch(dialogType.HIDE_DIALOG)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

@@ -4,34 +4,38 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PopupDialog, { SlideAnimation, DialogTitle, ScaleAnimation, DialogButton } from 'react-native-popup-dialog';
 
 const dialogTitle = props => <DialogTitle {...props} />;
-class PopupDialogView extends Component {
-    render() {
-        return (
-            <PopupDialog {...this.props} dialogStyle={{ overflow: 'hidden' }}>
-                {this.props.children}
-                <View style={{ flexDirection: 'row', position: 'absolute', bottom: 0 }}>
-                    {this.props.cancelBtn && (
-                        <TouchableOpacity
-                            activeOpacity={0.6}
-                            onPress={this.props.cancelBtn.onPress}
-                            style={[styles.container, { backgroundColor: this.props.cancelBtn.bgColor }]}>
-                            <Text style={styles.buttonTitle}>{this.props.cancelBtn.title}</Text>
-                        </TouchableOpacity>
-                    )}
-                    {this.props.confirmBtn && (
-                        <TouchableOpacity
-                            activeOpacity={0.6}
-                            disabled={this.props.confirmBtn.disabled}
-                            onPress={this.props.confirmBtn.onPress}
-                            style={[styles.container, { backgroundColor: this.props.confirmBtn.bgColor }]}>
-                            <Text style={styles.buttonTitle}>{this.props.confirmBtn.title}</Text>
-                        </TouchableOpacity>
-                    )}
-                </View>
-            </PopupDialog>
-        );
-    }
-}
+const Button = props => (
+    <TouchableOpacity
+        disabled={props.disabled || false}
+        activeOpacity={0.6}
+        onPress={props.onPress}
+        style={[styles.container, { backgroundColor: props.bgColor }]}>
+        <Text style={styles.buttonTitle}>{props.title}</Text>
+    </TouchableOpacity>
+);
+const PopupDialogView = props => (
+    <PopupDialog {...props}>
+        {props.children}
+        <View style={{ flexDirection: 'row', position: 'absolute', bottom: 0 }}>
+            {props.cancelBtn && (
+                <Button
+                    onPress={props.cancelBtn.onPress}
+                    bgColor={props.cancelBtn.bgColor}
+                    title={props.cancelBtn.title}
+                />
+            )}
+            {props.confirmBtn && (
+                <Button
+                    disabled={props.confirmBtn.disabled}
+                    onPress={props.confirmBtn.onPress}
+                    bgColor={props.confirmBtn.bgColor}
+                    title={props.confirmBtn.title}
+                />
+            )}
+        </View>
+    </PopupDialog>
+);
+
 const scaleAnimation = new ScaleAnimation();
 const actions = [];
 PopupDialog.propTypes = {
@@ -46,11 +50,12 @@ PopupDialog.propTypes = {
     confirmBtn: PropTypes.object,
     cancelBtn: PropTypes.object,
     overlayOpacity: PropTypes.number,
-    overlayBackgroundColor: PropTypes.string
+    overlayBackgroundColor: PropTypes.string,
+    dialogStyle: PropTypes.object
 };
 PopupDialog.defaultProps = {
-    width: 0.9,
-    height: 300,
+    width: 100,
+    height: 100,
     show: false,
     dismissOnTouchOutside: false,
     dialogAnimation: scaleAnimation,
@@ -59,7 +64,8 @@ PopupDialog.defaultProps = {
     confirmBtn: null,
     cancelBtn: null,
     overlayOpacity: 0.7,
-    overlayBackgroundColor: '#000'
+    overlayBackgroundColor: '#000',
+    dialogStyle: { overflow: 'hidden' }
 };
 const styles = StyleSheet.create({
     container: {
