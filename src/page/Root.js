@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SyanImagePicker from 'react-native-syan-image-picker';
 import { NavigationActions } from 'react-navigation';
+
 import {
     Alert,
     AlertIOS,
@@ -25,6 +26,13 @@ import { ListRow, Toast } from 'teaset';
 import ToastView from '../equipment/ToastUtil';
 import PopupDialog from '../modules/PopupDialog';
 import MaskedView from '../modules/MaskedView';
+let oldRender = Text.prototype.render;
+Text.prototype.render = function(...args) {
+    let origin = oldRender.call(this, ...args);
+    return React.cloneElement(origin, {
+        style: [origin.props.style, { fontFamily: 'PingFangTC-Medium' }]
+    });
+};
 const customAnimationConfig = {
     duration: 400,
     create: {

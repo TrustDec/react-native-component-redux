@@ -47,7 +47,6 @@
 
 > [react-navigation-redux error][new-nav-redux]
 
-
 <img src="./assets/tab-navigator.png"/>
 
 ### 介绍 Redux 中间件（Middleware）
