@@ -23,7 +23,8 @@ export const LOGINMN_DIALOG = {
     children: <ViewTest routh="LOGIN" />,
     dialogTitle: <DialogTitle title="LOGIN" />,
     confirmBtn: { title: '设置字体颜色', bgColor: '#188eee' },
-    cancelBtn: { title: '关闭按钮', bgColor: '#9DABC0' }
+    cancelBtn: { title: '关闭按钮', bgColor: '#9DABC0' },
+    dialogStyle: { backgroundColor: '#fff' }
 };
 
 export const HOME_DIALOG = {
@@ -32,5 +33,6 @@ export const HOME_DIALOG = {
     height: 300,
     children: <ViewTest routh="HOME" />,
     confirmBtn: { title: '设置字体颜色', bgColor: '#188eee' },
-    cancelBtn: { title: '关闭按钮', bgColor: '#9DABC0' }
+    cancelBtn: { title: '关闭按钮', bgColor: '#9DABC0' },
+    dialogStyle: { backgroundColor: '#fff' }
 };

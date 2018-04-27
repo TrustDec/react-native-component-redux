@@ -65,7 +65,7 @@ PopupDialog.defaultProps = {
     cancelBtn: null,
     overlayOpacity: 0.7,
     overlayBackgroundColor: '#000',
-    dialogStyle: { overflow: 'hidden' }
+    dialogStyle: { overflow: 'hidden',backgroundColor:'rgba(0,0,0,.3)' }
 };
 const styles = StyleSheet.create({
     container: {
