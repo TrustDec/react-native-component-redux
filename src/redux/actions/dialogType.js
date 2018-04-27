@@ -27,10 +27,6 @@ export const UNKNOWN_ERROR = {
     ...PUBLIC_DIALOG,
     children: <UpdateDialog title={'连接异常'} />
 };
-export const AWAITING_USER_ACTION = {
-    ...PUBLIC_DIALOG,
-    children: <UpdateDialog title={'等待操作'} />
-};
 export const UPDATE_INSTALLED = {
     ...PUBLIC_DIALOG,
     children: <UpdateDialog title={'安装并重启'} />

@@ -165,7 +165,6 @@ class LoginScreenView extends Component {
                                             let totalBytes = (mess.totalBytes / 1024).toFixed(3);
                                             let per = parseInt(receivedBytes / totalBytes * 100);
                                             this.props.showDialog(dialogType.DOWNLOADING_PACKAGE(per));
-                                            //this.props.downSchedule(per);
                                         })
                                         .then(LocalPackage => {
                                             InteractionManager.runAfterInteractions(() => {
@@ -186,7 +185,7 @@ class LoginScreenView extends Component {
                     this.props.showDialog(dialogType.UNKNOWN_ERROR);
                     setTimeout(() => {
                         this.props.hideDialog();
-                    }, 1000);
+                    }, 500);
                 });
             });
     };
