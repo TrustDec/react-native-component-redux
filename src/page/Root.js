@@ -88,19 +88,28 @@ class LoginScreenView extends Component {
     };
     constructor() {
         super();
-
+        this.timer = [];
         this._image = require('../image/twitter.png');
     }
     componentDidMount() {
         this.resetAnimation();
     }
+    componentWillUnmount() {
+        this.onClearTimer();
+    }
+    onClearTimer = () => {
+        this.timer &&
+            this.timer.map((item, index) => {
+                item && clearTimeout(item);
+            });
+    };
     resetAnimation() {
         this.setState({
             appReady: false,
             rootKey: Math.random()
         });
 
-        setTimeout(() => {
+        this.timer[0] = setTimeout(() => {
             this.setState({
                 appReady: true
             });
@@ -133,57 +142,53 @@ class LoginScreenView extends Component {
         this.props.showDialog(diaOptin);
     };
     onCheckForUpdate = () => {
+        this.onClearTimer();
         this.props.showDialog(dialogType.UPDATE_DIALOG);
         CodePush.checkForUpdate(CONFIG.CODEPUS_KEY)
             .then(update => {
                 if (!update) {
                     InteractionManager.runAfterInteractions(() => {
                         this.props.showDialog(dialogType.UP_TO_DATE);
-                        setTimeout(() => {
+                        this.timer[1] = setTimeout(() => {
                             this.props.hideDialog();
                         }, 1000);
                     });
                 } else {
-                    //this.props.showDialog(dialogType.AWAITING_USER_ACTION);
+                    //InteractionManager.runAfterInteractions(() => {
+                    this.props.showDialog(dialogType.GUODU_DIALOG);
+                    // });
                     InteractionManager.runAfterInteractions(() => {
-                        Alert.alert('有可用更新' + update.label, update.description, [
-                            {
-                                text: '取消',
-                                onPress: () => {
-                                    this.props.showDialog(dialogType.UPDATE_IGNORED);
-                                    setTimeout(() => {
-                                        this.props.hideDialog();
-                                    }, 500);
-                                }
-                            },
-                            {
-                                text: '更新',
-                                onPress: () => {
-                                    update
-                                        .download(mess => {
-                                            let receivedBytes = (mess.receivedBytes / 1024).toFixed(3);
-                                            let totalBytes = (mess.totalBytes / 1024).toFixed(3);
-                                            let per = parseInt(receivedBytes / totalBytes * 100);
-                                            this.props.showDialog(dialogType.DOWNLOADING_PACKAGE(per));
-                                        })
-                                        .then(LocalPackage => {
-                                            InteractionManager.runAfterInteractions(() => {
-                                                this.props.showDialog(dialogType.UPDATE_INSTALLED);
-                                                setTimeout(() => {
-                                                    LocalPackage.install(CodePush.InstallMode.IMMEDIATE, 0);
-                                                }, 500);
-                                            });
-                                        });
-                                }
-                            }
-                        ]);
+                        update.cancelBtn = () => {
+                            this.props.showDialog(dialogType.UPDATE_IGNORED);
+                            this.timer[3] = setTimeout(() => {
+                                this.props.hideDialog();
+                            }, 500);
+                        };
+                        update.confirmBtn = () => {
+                            update
+                                .download(mess => {
+                                    let receivedBytes = (mess.receivedBytes / 1024).toFixed(3);
+                                    let totalBytes = (mess.totalBytes / 1024).toFixed(3);
+                                    let per = parseInt(receivedBytes / totalBytes * 100);
+                                    this.props.showDialog(dialogType.DOWNLOADING_PACKAGE(per));
+                                })
+                                .then(LocalPackage => {
+                                    InteractionManager.runAfterInteractions(() => {
+                                        this.props.showDialog(dialogType.UPDATE_INSTALLED);
+                                        this.timer[2] = setTimeout(() => {
+                                            LocalPackage.install(CodePush.InstallMode.IMMEDIATE, 0);
+                                        }, 500);
+                                    });
+                                });
+                        };
+                        this.props.showDialog(dialogType.AWAITING_USER_ACTION(update));
                     });
                 }
             })
             .catch(error => {
                 InteractionManager.runAfterInteractions(() => {
                     this.props.showDialog(dialogType.UNKNOWN_ERROR);
-                    setTimeout(() => {
+                    this.timer[4] = setTimeout(() => {
                         this.props.hideDialog();
                     }, 500);
                 });
