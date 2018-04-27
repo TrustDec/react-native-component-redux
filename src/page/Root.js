@@ -153,7 +153,7 @@ class LoginScreenView extends Component {
                                     this.props.showDialog(dialogType.UPDATE_IGNORED);
                                     setTimeout(() => {
                                         this.props.hideDialog();
-                                    },500);
+                                    }, 500);
                                 }
                             },
                             {
@@ -172,7 +172,7 @@ class LoginScreenView extends Component {
                                                 this.props.showDialog(dialogType.UPDATE_INSTALLED);
                                                 setTimeout(() => {
                                                     LocalPackage.install(CodePush.InstallMode.IMMEDIATE, 0);
-                                                },500);
+                                                }, 500);
                                             });
                                         });
                                 }
