@@ -6,6 +6,7 @@ import visibilityFilter from './visibilityFilter';
 import login from './login';
 import dialog from './dialog';
 import theme from './theme';
+import schedule from './schedule';
 
 const AppReducer = combineReducers({
     nav,
@@ -14,6 +15,7 @@ const AppReducer = combineReducers({
     visibilityFilter,
     login,
     dialog,
+    schedule,
     theme
 });
 export default AppReducer;

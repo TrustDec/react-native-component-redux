@@ -53,7 +53,7 @@ class LoginScreen extends Component<Props, State> {
                 this.props.navigation.dispatch(resetAction);
                 LayoutAnimation.linear();
             });
-        }, 2000);
+        }, 1500);
     };
     render() {
         return (

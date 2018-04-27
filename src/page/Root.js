@@ -15,6 +15,7 @@ import {
     StatusBar,
     ActivityIndicator,
     ScrollView,
+    InteractionManager,
     LayoutAnimation
 } from 'react-native';
 import * as dialogType from '../redux/actions/dialogType';
@@ -23,8 +24,7 @@ import * as actionCreators from '../redux/actions/loginActions';
 import CodePush from 'react-native-code-push';
 import Modal from 'react-native-modalbox';
 import * as CONFIG from '../equipment/ComponentUtil';
-import { ListRow, Toast } from 'teaset';
-import ToastView from '../equipment/ToastUtil';
+import { ListRow } from 'teaset';
 import PopupDialog from '../modules/PopupDialog';
 import MaskedView from '../modules/MaskedView';
 let components = [Text, TextInput];
@@ -43,7 +43,7 @@ components.map((item, index) => {
     };
     item.prototype.render = function render() {
         let oldProps = this.props;
-        this.props = { ...this.props, ...customProps, style: [this.props.style] };
+        this.props = { ...this.props, ...customProps, style: [customProps.style, this.props.style] };
         try {
             return TextRender.apply(this, arguments);
         } finally {
@@ -133,36 +133,61 @@ class LoginScreenView extends Component {
         this.props.showDialog(diaOptin);
     };
     onCheckForUpdate = () => {
-        ToastView.showCustom('检测更新');
+        this.props.showDialog(dialogType.UPDATE_DIALOG);
         CodePush.checkForUpdate(CONFIG.CODEPUS_KEY)
             .then(update => {
-                ToastView.hideCustom();
                 if (!update) {
-                    Toast.smile('暂无更新', 1500);
+                    InteractionManager.runAfterInteractions(() => {
+                        this.props.showDialog(dialogType.UP_TO_DATE);
+                        setTimeout(() => {
+                            this.props.hideDialog();
+                        }, 1000);
+                    });
                 } else {
-                    Alert.alert('有可用更新' + update.label, update.description, [
-                        { text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'destructive' },
-                        {
-                            text: '更新',
-                            onPress: () => {
-                                update
-                                    .download(mess => {
-                                        let receivedBytes = (mess.receivedBytes / 1024).toFixed(3);
-                                        let totalBytes = (mess.totalBytes / 1024).toFixed(3);
-                                        let per = parseInt(receivedBytes / totalBytes * 100);
-                                        this.setState({ per });
-                                    })
-                                    .then(LocalPackage => {
-                                        LocalPackage.install(CodePush.InstallMode.IMMEDIATE, 0);
-                                    });
+                    //this.props.showDialog(dialogType.AWAITING_USER_ACTION);
+                    InteractionManager.runAfterInteractions(() => {
+                        Alert.alert('有可用更新' + update.label, update.description, [
+                            {
+                                text: '取消',
+                                onPress: () => {
+                                    this.props.showDialog(dialogType.UPDATE_IGNORED);
+                                    setTimeout(() => {
+                                        this.props.hideDialog();
+                                    },500);
+                                }
+                            },
+                            {
+                                text: '更新',
+                                onPress: () => {
+                                    update
+                                        .download(mess => {
+                                            let receivedBytes = (mess.receivedBytes / 1024).toFixed(3);
+                                            let totalBytes = (mess.totalBytes / 1024).toFixed(3);
+                                            let per = parseInt(receivedBytes / totalBytes * 100);
+                                            this.props.showDialog(dialogType.DOWNLOADING_PACKAGE(per));
+                                            //this.props.downSchedule(per);
+                                        })
+                                        .then(LocalPackage => {
+                                            InteractionManager.runAfterInteractions(() => {
+                                                this.props.showDialog(dialogType.UPDATE_INSTALLED);
+                                                setTimeout(() => {
+                                                    LocalPackage.install(CodePush.InstallMode.IMMEDIATE, 0);
+                                                },500);
+                                            });
+                                        });
+                                }
                             }
-                        }
-                    ]);
+                        ]);
+                    });
                 }
             })
             .catch(error => {
-                ToastView.hideCustom();
-                Toast.sad('更新失败', 1500);
+                InteractionManager.runAfterInteractions(() => {
+                    this.props.showDialog(dialogType.UNKNOWN_ERROR);
+                    setTimeout(() => {
+                        this.props.hideDialog();
+                    }, 1000);
+                });
             });
     };
     render() {
@@ -179,7 +204,6 @@ class LoginScreenView extends Component {
                         titlePlace="top"
                         detailStyle={[styles.counterTextRed, this.props.state.theme.styles.navFont]}
                     />
-                    <ListRow title="更新进度:" detail={this.state.per} />
                     <ListRow title="isLoggedIn:" detail={this.props.state.login.isLoggedIn + ''} />
                     <ListRow title="status:" detail={this.props.state.login.status + ''} />
                     <ListRow
@@ -213,7 +237,7 @@ class LoginScreenView extends Component {
                                 );
                             }}
                             title={'SyanImagePicker'}
-                            bgColor="#188eee"
+                            bgColor="#5ACBC8"
                         />
                     </View>
 
@@ -261,16 +285,18 @@ const mapStateToProps = state => {
         isLoggedIn: state.login.isLoggedIn,
         status: state.login.status,
         state: state,
-        theme: state.theme
+        theme: state.theme,
+        schedule: state.schedule
     };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         actions: bindActionCreators(actionCreators, dispatch),
-        showDialog: option => dispatch(option),
+        showDialog: DIALOG => dispatch(DIALOG),
         hideDialog: () => dispatch(dialogType.HIDE_DIALOG),
         setTheme: () => dispatch({ type: 'DARK_THEME' }),
-        setDefaultTheme: () => dispatch({ type: 'DEFAULT_THEME' })
+        setDefaultTheme: () => dispatch({ type: 'DEFAULT_THEME' }),
+        downSchedule: schedule => dispatch({ type: 'STARE_DOWNLOADING', schedule: schedule })
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreenView);
