@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icons from 'react-native-vector-icons/Ionicons';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 import LoginScreen from '../page/Login';
 import RootScreen from '../page/Root';
@@ -16,23 +16,28 @@ import ECMAScript2016 from '../page/ECMAScript2016';
 // main
 import MainScreen from '../page/main';
 
-const TabOptions = (title, navigation) => {
+const TabOptions = (title, yesFocused, noFocused,navigation) => {
     const { state, goBack } = navigation;
-    const tabBarLabel = title;
-    // const tabBarIcon = (({ focused }) => (
-    //     focused
-    //         ? <Image source={iconName} resizeMode={'stretch'} style={{ width: WH, height: WH, tintColor: UTIL.THEMEBG }} />
-    //         : <Image source={iconName} resizeMode={'stretch'} style={{ width: WH, height: WH, tintColor: '#B6B9C3' }} />
-    // ));
+    const tabBarLabel = title;//tintColor: '#B6B9C3'
+    const tabBarIcon = (({ focused }) => (
+        focused
+            ? <Icons name={yesFocused} size={28} color={'#188eee'}/>
+            : <Icons name={noFocused} size={28} color={'#B6B9C3'} />
+    ));
+    
 
-    return { tabBarLabel /*tabBarIcon*/ };
+    return { tabBarLabel,tabBarIcon };
 };
 
 export const NavigationBar = TabNavigator(
     {
         HomeController: {
             screen: MainScreen,
-            navigationOptions: ({ navigation }) => TabOptions('微门户', navigation)
+            navigationOptions: ({ navigation }) => TabOptions('圈子', 'ios-aperture','ios-aperture-outline',navigation)
+        },
+        MyController: {
+            screen: MainScreen,
+            navigationOptions: ({ navigation }) => TabOptions('我的','ios-contact','ios-contact-outline', navigation)
         }
     },
     {
@@ -43,7 +48,7 @@ export const NavigationBar = TabNavigator(
         lazy: true,
         backBehavior: 'none',
         tabBarOptions: {
-            activeTintColor: 'red',
+            activeTintColor: '#188eee',
             inactiveTintColor: '#B6B9C3',
             indicatorStyle: { height: 0 },
             showIcon: true,

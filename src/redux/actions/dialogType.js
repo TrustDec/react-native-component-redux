@@ -13,7 +13,7 @@ const PUBLIC_DIALOG = {
     width: 100,
     height: 100,
     overlayOpacity: 0,
-    dialogStyle: { backgroundColor: 'rgba(0, 0, 0, .7)' }
+    dialogStyle: { backgroundColor: 'rgba(0, 0, 0, .7)', }
 };
 
 export const UPDATE_DIALOG = {

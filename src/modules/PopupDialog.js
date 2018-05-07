@@ -13,10 +13,11 @@ const Button = props => (
         <Text style={styles.buttonTitle}>{props.title}</Text>
     </TouchableOpacity>
 );
+const popupDialogStyle = {overflow: 'hidden'};
 const PopupDialogView = props => (
-    <PopupDialog {...props}>
+    <PopupDialog {...props} dialogStyle={Object.assign({},popupDialogStyle,props.dialogStyle)}>
         {props.children}
-        <View style={{ flexDirection: 'row', position: 'absolute', bottom: 0 }}>
+        <View style={styles.dialogButtonStyle}>
             {props.cancelBtn && (
                 <Button
                     onPress={props.cancelBtn.onPress}
@@ -65,7 +66,7 @@ PopupDialog.defaultProps = {
     cancelBtn: null,
     overlayOpacity: 0.7,
     overlayBackgroundColor: '#000',
-    dialogStyle: { overflow: 'hidden', backgroundColor: 'rgba(0,0,0,.3)' }
+    dialogStyle: { backgroundColor: 'rgba(0,0,0,.3)' }
 };
 const styles = StyleSheet.create({
     container: {
@@ -77,6 +78,11 @@ const styles = StyleSheet.create({
     buttonTitle: {
         color: '#fff',
         fontSize: 16
+    },
+    dialogButtonStyle:{
+        flexDirection: 'row', 
+        position: 'absolute', 
+        bottom: 0
     }
 });
 export default PopupDialogView;
